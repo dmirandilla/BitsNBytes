@@ -11,3 +11,82 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html{
+  font-size: 62.5%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.News{
+  display: grid;
+  grid-template-columns: 400px 400px 400px;
+  justify-content: center;
+}
+
+.newsList{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5rem;
+}
+
+.newsCard{
+  position: relative;
+  background-color: lightgray;
+  margin: 1rem;
+  flex: 1 0 25rem;
+  max-width: 30rem;
+  max-height: 50rem;
+  transition: 0.2s;
+}
+
+.newsCard:hover{
+  transform: translateY(-0.5rem);
+  box-shadow: 0.5rem 0.75rem 1.5rem #bbbbbbbb;
+}
+
+.newsImage{
+  margin-top: 3rem;
+  max-width: 100%;
+  height: auto;  
+}
+
+.newsCard_save{
+  position: absolute;
+  right: 0;
+  margin: 0.5rem;
+  font-size: 2rem;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.newsCard_share{
+  position: absolute;
+  right: 3rem;
+  margin: 0.5rem;
+  font-size: 2rem;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.newsCard_more{
+  position: absolute;
+  font-size: 2rem;
+  left: 0;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.newsCard_content{
+  margin: 2rem;
+  text-align: center;
+}
+
+.newsSource{
+  margin: 0.5rem;
+  text-align: left;
+}
+
+.newsPosted{
+  margin: 0.5rem;
+  text-align: right;
+}
