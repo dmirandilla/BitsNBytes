@@ -1,0 +1,51 @@
+.heading {
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    height: 25%;
+    top: 5%;
+}
+
+
+/* Vertical Align & Move Right a bit */
+.heading-text {
+    left: 5%;
+    font-family: 'Nunito-Sans';
+
+    display: flex;
+    flex-direction: row;
+
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.personalInfo {
+    padding-top: 45%;
+}
+
+.settings {
+    
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-top: 35%;
+    padding-left: 10%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.information {
+    height: 25%;
+}
