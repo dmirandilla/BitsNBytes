@@ -28,13 +28,13 @@ const CreateAccount = () => {
         console.log(`Checking to see if username is available: ${username.toLowerCase()}`);
         // await getUser();
 
-        let userData = getUserResponse.data;
-        console.log("USER GET RES: ", userData);
-        if(userData) {
-            console.log('GET REQ DONE, USERNAME NOT AVAILABLE ');
-            alert('Username is not available!');
-            return;
-        }
+        // let userData = getUserResponse.data;
+        // console.log("USER GET RES: ", userData);
+        // if(userData) {
+        //     console.log('GET REQ DONE, USERNAME NOT AVAILABLE ');
+        //     alert('Username is not available!');
+        //     return;
+        // }
 
         if (password !== confirmPassword) {
             alert("Password does not match!");
@@ -59,6 +59,7 @@ const CreateAccount = () => {
         <h1>Let's Get You Suited Up</h1>
         <form noValidate autoComplete="off" onSubmit={onSubmit}>
             <br/><br/>
+            <label>Username</label>
             <input
                 required
                 label="Username"
@@ -67,6 +68,7 @@ const CreateAccount = () => {
                 onChange={(event) => setUsername(event.target.value)}
             />
             <br/><br/>
+            <label>Email</label>
             <input
                 required
                 label="Email"
@@ -75,6 +77,7 @@ const CreateAccount = () => {
                 onChange={(event) => setEmail(event.target.value)}
             />
             <br/><br/>
+            <label>Password</label>
             <input
                 required
                 label="Password"
@@ -85,6 +88,7 @@ const CreateAccount = () => {
                 onChange={(event) => setPassword(event.target.value)}
             />
             <br/><br/>
+            <label>Confirm Password</label>
             <input
                 required
                 label="Confirm Password"
@@ -176,7 +180,7 @@ const CreateAccount = () => {
 
     return(
         <div className="container">
-            {/* {changeCode ? enterCode() : createForm()} */}
+            {changeCode ? enterCode() : createForm()}
             <h1>createAccount</h1>
         </div>
     );
