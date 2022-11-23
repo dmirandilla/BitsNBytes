@@ -21,6 +21,9 @@ const CreateAccount = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
+
+        // history.push('/login');
+        history.go('/login');
         
         /*
             First scan DynamoDB to see if the username exists, then scan Cognito User Pool. 
@@ -36,22 +39,22 @@ const CreateAccount = () => {
         //     return;
         // }
 
-        if (password !== confirmPassword) {
-            alert("Password does not match!");
-        } else {
-            // Cognito Sign Up
-            UserPool.signUp(username.toLowerCase(), password, [{ Name: "email", Value: email }], null, (err, data) => {
-                if (err) {
-                    console.log("Cognito Error: ", err);
-                    console.log(err.message);
-                    alert("There was an error creating your account:\n\n" + err.message);
-                } else {
-                    console.log(data);
-                    alert("Successfully Created Account! Next we will need to confirm your email.");
-                    setChangeCode(true);
-                }
-            });
-        }
+        // if (password !== confirmPassword) {
+        //     alert("Password does not match!");
+        // } else {
+        //     // Cognito Sign Up
+        //     UserPool.signUp(username.toLowerCase(), password, [{ Name: "email", Value: email }], null, (err, data) => {
+        //         if (err) {
+        //             console.log("Cognito Error: ", err);
+        //             console.log(err.message);
+        //             alert("There was an error creating your account:\n\n" + err.message);
+        //         } else {
+        //             console.log(data);
+        //             alert("Successfully Created Account! Next we will need to confirm your email.");
+        //             setChangeCode(true);
+        //         }
+        //     });
+        // }
     }
 
     const createForm = () => (
@@ -156,7 +159,7 @@ const CreateAccount = () => {
                 // console.log("ADD RES: ", addRes);
 
                 alert("Successfully entered code!");
-                history.push("/login");
+                history.push('/login');
             }
         });
     }
