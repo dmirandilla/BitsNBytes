@@ -1,22 +1,27 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Home from './home';
-import UserProfie from './userProfile/userProfile';
+import UserProfile from './userProfile/userProfile';
+import { Account } from "./account/Account";
+import CreateAccount from "./account/createAccount";
+import Login from "./account/Login";
 
 
 function App() {
   return (
-    <Router>
-      <Routes>
+    <BrowserRouter>
+      <Switch>
         <Route path="/" element={<Home />} />
-        <Route path="/userProfile" element={<UserProfie />} />
-      </Routes>
-    </Router>
+
+        <Account>
+          <Route path="/userProfile" element={<UserProfile />} />  
+          <Route path="/createAccount" element={<CreateAccount />} />  
+          <Route path="/login" element={<Login />} />  
+        </Account>
+        <Redirect to="/" />
+        
+      </Switch>
+    </BrowserRouter>
   );
 }
 
