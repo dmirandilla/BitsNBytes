@@ -77,17 +77,8 @@ async function editSettings(requestBody) {
 
     // requestBody is a JSON, get the individual items
     const rBody = JSON.parse(JSON.stringify(requestBody));
-    // console.log("RBODY: ", rBody, "\n");
     const email = rBody.email;
-    const settings = rBody.settings;
-
-    // console.log("SETTINGS: ", settings, "\n");
-    const sports = settings.sports;
-    const finance = settings.finance;
-    const healthfitness = settings.healthfitness;
-    const memes = settings.memes;
-    const frequency = settings.frequency;
-    const lastUpdated = settings.lastUpdated;
+    const { sports, finance, healthfitness, memes, frequency, lastUpdated }  = rBody.settings;
 
     let params = {
         TableName: dynamodbTableName,
@@ -101,14 +92,6 @@ async function editSettings(requestBody) {
             frequency = :frequencyVal,
             lastUpdated = :lastUpdatedVal
         `,
-        // ExpressionAttributeNames: {
-        //     "#sports": "sports",
-        //     "#finance": "finance",
-        //     "#healthfitness" : "healthfitness",
-        //     "#memes" : "memes",
-        //     "#frequency" : "frequency",
-        //     "#lastUpdated" : "lastUpdated"
-        // },
         ExpressionAttributeValues: {
             ":sportsVal": sports,
             ":financeVal": finance,
