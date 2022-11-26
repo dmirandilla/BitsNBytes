@@ -24,7 +24,7 @@ exports.handler = async function(event) {
             break;
         case event.httpMethod === 'PATCH' && event.path === settingPath:
             const requestBody = JSON.parse(event.body);
-            response = await editSettings(requestBody.email, requestBody.settings);
+            response = await editSettings(JSON.parse(event.body));
             break;
         case event.httpMethod === 'DELETE' && event.path === settingPath:
             response = await deleteSettings(JSON.parse(event.body)['email']);
@@ -77,30 +77,46 @@ async function editSettings(requestBody) {
 
     // requestBody is a JSON, get the individual items
     const rBody = JSON.parse(JSON.stringify(requestBody));
+    // console.log("RBODY: ", rBody, "\n");
     const email = rBody.email;
     const settings = rBody.settings;
+
+    // console.log("SETTINGS: ", settings, "\n");
+    const sports = settings.sports;
+    const finance = settings.finance;
+    const healthfitness = settings.healthfitness;
+    const memes = settings.memes;
+    const frequency = settings.frequency;
+    const lastUpdated = settings.lastUpdated;
 
     let params = {
         TableName: dynamodbTableName,
         Key: {
             'email': email,
         },
-        UpdateExpression: `SET #sports = ${settings.sports}, 
-            #finance = ${settings.finance}, 
-            #healthfitness = ${settings.healthfitness},
-            #memes = ${settings.memes},
-            #frequency = ${settings.frequency},
-            #lastUpdated = ${settings.lastUpdated}
+        UpdateExpression: `set sports = :sportsVal, 
+            finance = :financeVal, 
+            healthfitness = :healthfitnessVal,
+            memes = :memesVal,
+            frequency = :frequencyVal,
+            lastUpdated = :lastUpdatedVal
         `,
-        ExpressionAttributeNames: {
-            "#sports": "sports",
-            "#finance": "finance",
-            "#healthfitness" : "healthfitness",
-            "#memes" : "memes",
-            "#frequency" : "frequency",
-            "#lastUpdated" : "lastUpdated"
+        // ExpressionAttributeNames: {
+        //     "#sports": "sports",
+        //     "#finance": "finance",
+        //     "#healthfitness" : "healthfitness",
+        //     "#memes" : "memes",
+        //     "#frequency" : "frequency",
+        //     "#lastUpdated" : "lastUpdated"
+        // },
+        ExpressionAttributeValues: {
+            ":sportsVal": sports,
+            ":financeVal": finance,
+            ":healthfitnessVal" : healthfitness,
+            ":memesVal" : memes,
+            ":frequencyVal" : frequency,
+            ":lastUpdatedVal" : lastUpdated
         },
-        ExpressionAttributeValues: {},
         ReturnValues: 'UPDATED_NEW'
     }
     
