@@ -1,11 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import Home from './home';
+// import Home from './home';
 import UserProfile from './userProfile/userProfile';
 import { Account } from "./account/Account";
 import CreateAccount from "./account/createAccount";
 import Login from "./account/Login";
 
+import Home from "./loading-navbar/Home";
+import NavBar from "./loading-navbar/NavBar";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route exact path="/userProfile" component={UserProfile} />  
           <Route exact path="/createAccount" component={CreateAccount} />  
           <Route exact path="/login" component={Login} />  
+
+          <Route exact path="/navbar" component={NavBar} />  
         </Account>
         <Redirect to="/" />
         
