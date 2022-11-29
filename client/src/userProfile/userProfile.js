@@ -9,10 +9,26 @@ import { Dialog, Transition } from '@headlessui/react'
 // import PersonIcon from './person.png';
 // import { ReactComponent as EllipseIcon } from './ellipse.png';
 
-function UserProfile() {
-    const [open, setOpen] = useState(false);
+import sportsIcon from './images/sports.jpg';
+import foodIcon from './images/food.jpg';
+import techIcon from './images/tech.jpg';
+import travelIcon from './images/travel.jpg';
+import musicIcon from './images/music.jpg';
+import healthfitnessIcon from './images/healthfitness.jpg';
+import financeIcon from './images/finance.jpg';
+import memeIcon from './images/meme.jpg';
 
-    const cancelButtonRef = useRef(null);
+function UserProfile() {
+	const [open, setOpen] = useState(false);
+
+	const cancelButtonRef = useRef(null);
+
+	const inlineDivStyle = {
+		whiteSpace: 'nowrap',
+		display: 'inline',
+		flexDirection: 'row',
+		alignItems: 'center'
+	};
 
   return (
     <>
@@ -62,7 +78,7 @@ function UserProfile() {
 										<div className="sm:flex sm:items-start">
 											<div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
 												<Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-													Edit Information
+													Edit Settings
 												</Dialog.Title>
 												{/* <div className="mt-2">
 													<p className="text-sm text-gray-500">
@@ -78,135 +94,221 @@ function UserProfile() {
 										<form action="#" method="POST">
 											<div className="overflow-hidden shadow sm:rounded-md">
 												<div className="bg-white px-4 py-5 sm:p-6">
-													<div className="grid grid-cols-6 gap-6">
-														<div className="col-span-6 sm:col-span-3">
-															<label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-																First name
-															</label>
-															<input
-																type="text"
-																name="first-name"
-																id="first-name"
-																autoComplete="given-name"
-																className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-															/>
+													<div className="grid grid-cols-2 gap-6">
+														
+														{/* Start left Column */}
+														<div className="space-y-4">
+
+															{/* Title & Subtitle */}
+															<div className="md:col-span-1">
+																<div className="px-4 sm:px-0">
+																	<h3 className="text-lg font-medium leading-6 text-gray-900">Categories Subscriptions:</h3>
+																	{/* <p className="mt-1 text-sm text-gray-600">Decide which categories you want to see!</p> */}
+																</div>
+															</div>
+
+
+															{/* Sports */}
+															<div className="flex items-start">
+																<div className="flex h-5 items-center">
+																	<input
+																		id="sports"
+																		name="sports"
+																		type="checkbox"
+																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																	/>
+																</div>
+																<div className="ml-3 text-sm" style={inlineDivStyle}>
+																	<label htmlFor="sports" className="font-medium text-gray-700">
+																		Sports <img src={sportsIcon} style={inlineDivStyle}/>
+																	</label>
+																</div>
+															</div>
+
+															{/* Food */}
+															<div className="flex items-start">
+																<div className="flex h-5 items-center">
+																	<input
+																		id="food"
+																		name="food"
+																		type="checkbox"
+																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																	/>
+																</div>
+																<div className="ml-3 text-sm">
+																	<label htmlFor="food" className="font-medium text-gray-700">
+																		Food <img src={foodIcon} style={inlineDivStyle}/>
+																	</label>
+																</div>
+															</div>
+
+															{/* Tech */}
+															<div className="flex items-start">
+																<div className="flex h-5 items-center">
+																	<input
+																		id="tech"
+																		name="tech"
+																		type="checkbox"
+																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																	/>
+																</div>
+																<div className="ml-3 text-sm">
+																	<label htmlFor="tech" className="font-medium text-gray-700">
+																		Tech <img src={techIcon} style={inlineDivStyle}/>
+																	</label>
+																</div>
+															</div>
+
+															{/* Travel */}
+															<div className="flex items-start">
+																<div className="flex h-5 items-center">
+																	<input
+																		id="travel"
+																		name="travel"
+																		type="checkbox"
+																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																	/>
+																</div>
+																<div className="ml-3 text-sm">
+																	<label htmlFor="travel" className="font-medium text-gray-700">
+																		Travel <img src={travelIcon} style={inlineDivStyle}/>
+																	</label>
+																</div>
+															</div>
+
+															{/* Music */}
+															<div className="flex items-start">
+																<div className="flex h-5 items-center">
+																	<input
+																		id="music"
+																		name="music"
+																		type="checkbox"
+																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																	/>
+																</div>
+																<div className="ml-3 text-sm">
+																	<label htmlFor="music" className="font-medium text-gray-700">
+																		Music <img src={musicIcon} style={inlineDivStyle}/>
+																	</label>
+																</div>
+															</div>
+
+															{/* Health/Fitness */}
+															<div className="flex items-start">
+																<div className="flex h-5 items-center">
+																	<input
+																		id="healthfitness"
+																		name="healthfitness"
+																		type="checkbox"
+																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																	/>
+																</div>
+																<div className="ml-3 text-sm">
+																	<label htmlFor="healthfitness" className="font-medium text-gray-700">
+																		Health/Fitness <img src={healthfitnessIcon} style={inlineDivStyle}/>
+																	</label>
+																</div>
+															</div>
+
+															{/* Finance */}
+															<div className="flex items-start">
+																<div className="flex h-5 items-center">
+																	<input
+																		id="finance"
+																		name="finance"
+																		type="checkbox"
+																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																	/>
+																</div>
+																<div className="ml-3 text-sm">
+																	<label htmlFor="finance" className="font-medium text-gray-700">
+																		Finance <img src={financeIcon} style={inlineDivStyle}/>
+																	</label>
+																</div>
+															</div>
+
+															{/* Memes */}
+															<div className="flex items-start">
+																<div className="flex h-5 items-center">
+																	<input
+																		id="memes"
+																		name="memes"
+																		type="checkbox"
+																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																	/>
+																</div>
+																<div className="ml-3 text-sm">
+																	<label htmlFor="memes" className="font-medium text-gray-700">
+																		Memes <img src={memeIcon} style={inlineDivStyle}/>
+																	</label>
+																</div>
+															</div>
+														</div>
+														{/* End Left Column */}
+
+														{/* Start Right Column */}
+														<div className="space-y-4">
+															{/* Title & Subtitle */}
+															<div className="md:col-span-1">
+																<div className="px-4 sm:px-0">
+																	<h3 className="text-lg font-medium leading-6 text-gray-900">Frequency of Newsletter:</h3>
+																	{/* <p className="mt-1 text-sm text-gray-600">Daily or Monthly</p> */}
+																</div>
+															</div>
+
+															{/* Frequency */}
+															<div className="flex items-center">
+																<input
+																	id="daily"
+																	name="frequency"
+																	type="radio"
+																	className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																/>
+																<label htmlFor="daily" className="ml-3 block text-sm font-medium text-gray-700">
+																	Daily
+																</label>
+															</div>
+															<div className="flex items-center">
+																<input
+																	id="weekly"
+																	name="frequency"
+																	type="radio"
+																	className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																/>
+																<label htmlFor="weekly" className="ml-3 block text-sm font-medium text-gray-700">
+																	Weekly
+																</label>
+															</div>
 														</div>
 
-														<div className="col-span-6 sm:col-span-3">
-															<label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-																Last name
-															</label>
-															<input
-																type="text"
-																name="last-name"
-																id="last-name"
-																autoComplete="family-name"
-																className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-															/>
-														</div>
 
-														<div className="col-span-6 sm:col-span-4">
-															<label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
-																Email address
-															</label>
-															<input
-																type="text"
-																name="email-address"
-																id="email-address"
-																autoComplete="email"
-																className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-															/>
-														</div>
+													</div>    {/* End Grid */}
+												</div>		{/* End BG Color */}
+											</div>		{/* End overflow-hidden shadow */}
 
-														<div className="col-span-6 sm:col-span-3">
-															<label htmlFor="country" className="block text-sm font-medium text-gray-700">
-																	Country
-															</label>
-															<select
-																	id="country"
-																	name="country"
-																	autoComplete="country-name"
-																	className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-															>
-																	<option>United States</option>
-																	<option>Canada</option>
-																	<option>Mexico</option>
-															</select>
-														</div>
 
-														<div className="col-span-6">
-															<label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
-																	Street address
-															</label>
-															<input
-																	type="text"
-																	name="street-address"
-																	id="street-address"
-																	autoComplete="street-address"
-																	className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-															/>
-														</div>
-
-														<div className="col-span-6 sm:col-span-6 lg:col-span-2">
-															<label htmlFor="city" className="block text-sm font-medium text-gray-700">
-																	City
-															</label>
-															<input
-																	type="text"
-																	name="city"
-																	id="city"
-																	autoComplete="address-level2"
-																	className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-															/>
-														</div>
-
-														<div className="col-span-6 sm:col-span-3 lg:col-span-2">
-															<label htmlFor="region" className="block text-sm font-medium text-gray-700">
-																	State / Province
-															</label>
-															<input
-																	type="text"
-																	name="region"
-																	id="region"
-																	autoComplete="address-level1"
-																	className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-															/>
-														</div>
-
-														<div className="col-span-6 sm:col-span-3 lg:col-span-2">
-															<label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">
-																ZIP / Postal code
-															</label>
-															<input
-																type="text"
-																name="postal-code"
-																id="postal-code"
-																autoComplete="postal-code"
-																className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-															/>
-														</div>
-													</div>
-												</div>
-												<div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-													<button
-														type="submit"
-														className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-														onClick={() => setOpen(false)}
-														ref={cancelButtonRef}
-													>
-														Save
-													</button>
-															
-													<button
-														type="button"
-														className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-														onClick={() => setOpen(false)}
-														ref={cancelButtonRef}
-													>
-														Cancel
-													</button>
-												</div>
+											{/* Start of Modal Footer */}
+											<div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+												<button
+													type="submit"
+													className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+													onClick={() => setOpen(false)}
+													ref={cancelButtonRef}
+												>
+													Save
+												</button>
+														
+												<button
+													type="button"
+													className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+													onClick={() => setOpen(false)}
+													ref={cancelButtonRef}
+												>
+													Cancel
+												</button>
 											</div>
+											{/* End of Modal Footer */}
+
 										</form>
 									</div>
 								</Dialog.Panel>
