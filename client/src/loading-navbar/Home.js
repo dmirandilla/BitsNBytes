@@ -1,5 +1,9 @@
 import React from 'react';
 import HomeIcon from './assets/homepageIcon.png'
+import {Routes, Route, useHistory} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+
 
 const Home = () => {
   return (
@@ -11,11 +15,12 @@ const Home = () => {
       
         </h1>
         <div>
-          <button className='text-white group border-2 px-6 py-3 my-2 flex items-center  bg-[#D90429] hover:bg-[#7e0217]'>
-            Login / Register
+            <Link to='/login' className='text-white group border-2 px-6 py-3 my-2 flex items-center  bg-[#D90429] hover:bg-[#7e0217]'>
+                Login / Register
             <span className='group-hover:rotate-90 duration-300'>
             </span>
-          </button>
+            </Link>
+         
         </div>
       </div>
     </div>

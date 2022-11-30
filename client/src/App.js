@@ -9,6 +9,7 @@ import Login from "./account/Login";
 import Home from "./loading-navbar/Home";
 import NavBar from "./loading-navbar/NavBar";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/login" component={Login} />  
 
           <Route exact path="/navbar" component={NavBar} />  
+
         </Account>
         <Redirect to="/" />
         
