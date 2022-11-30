@@ -8,7 +8,7 @@ import Login from "./account/Login";
 
 import Home from "./loading-navbar/Home";
 import NavBar from "./loading-navbar/NavBar";
-
+import CategorySelection from "./account/categorySelection"
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
           <Route exact path="/login" component={Login} />  
 
           <Route exact path="/navbar" component={NavBar} />  
+          <Route exact path="/categorySelection" component={CategorySelection} />
 
         </Account>
         <Redirect to="/" />

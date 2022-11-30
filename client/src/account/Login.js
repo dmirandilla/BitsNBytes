@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Login = () => {
     return(
         
-<div className="flex min-h-full items-center justify-center py-80 px-4 sm:px-6 lg:px-8">
+<div className="flex min-h-full items-center justify-center py-80 px-4 ">
         <div className="w-full max-w-md space-y-8">
           <div>
             <img
@@ -69,7 +69,7 @@ const Login = () => {
             <div className="flex justify-center"> 
                 <h1 className="text-underlined"> 
                      Not a member?
-                    <Link to='/createAccount' className="underline underline-offset-8"> Register </Link>
+                    <Link to='/createAccount' className="underline underline-offset-4"> Register </Link>
                 </h1>
             </div>
 
