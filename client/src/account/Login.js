@@ -185,9 +185,9 @@ const Login = () => {
 
 
     return(
-			<div className="container">
-				{checkSession() ? <LoggedIn /> : loginComponent()}
-			</div>
+		<div className="container">
+			{checkSession() ? <LoggedIn /> : loginComponent()}
+		</div>
     );
 }
 
