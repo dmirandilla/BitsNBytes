@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AccountContext } from './Account';
 import { useHistory, Link } from 'react-router-dom';
 import Pool from "../UserPool";
+import LoggedIn from './LoggedIn';
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -133,7 +134,8 @@ const Login = () => {
 
     return(
 			<div className="container">
-				{checkSession() ? loggedInMessage() : loginComponent()}
+				{/* {checkSession() ? loggedInMessage() : loginComponent()} */}
+				{checkSession() ? <LoggedIn /> : loginComponent()}
 			</div>
     );
 }
