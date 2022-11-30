@@ -1,6 +1,7 @@
 import './UserProfile.css'
 import React, { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+<<<<<<< HEAD
 import { FaRegUserCircle } from 'react-icons/fa';
 
 import axios from 'axios';
@@ -9,6 +10,8 @@ import Pool from '../UserPool';
 // import HomeIcon from './house.png';
 // import personIcon from './person.png';
 // import { ReactComponent as EllipseIcon } from './ellipse.png';
+=======
+>>>>>>> origin/main
 
 import sportsIcon from './images/sports.jpg';
 import foodIcon from './images/food.jpg';

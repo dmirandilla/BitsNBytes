@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { CognitoUser } from "amazon-cognito-identity-js";
 import UserPool from "../UserPool";
+import { Link } from 'react-router-dom';
 
 const CreateAccount = () => {
     const [email, setEmail] = useState("");
@@ -104,6 +105,12 @@ const CreateAccount = () => {
             <div className="centerButton">
                 <button type="submit">Create Account</button>
             </div>
+
+            <div className="flex justify-center"> 
+                <Link to='/login' className="flex group relative justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Back
+                </Link>
+            </div>
         </form>
         <br/><br/>
         <p><i>{passReq}</i></p>
@@ -156,7 +163,8 @@ const CreateAccount = () => {
                 // console.log("ADD RES: ", addRes);
 
                 alert("Successfully entered code!");
-                history.go('/login');
+                history.push('/categorySelection');
+                history.go('/categorySelection');
             }
         });
     }
