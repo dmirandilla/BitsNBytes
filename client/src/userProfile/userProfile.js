@@ -1,12 +1,13 @@
 import './UserProfile.css'
-import React from 'react';
-
-import { Fragment, useRef, useState } from 'react'
+import React, { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-// import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { FaRegUserCircle } from 'react-icons/fa';
+
+import axios from 'axios';
+import Pool from '../UserPool';
 
 // import HomeIcon from './house.png';
-// import PersonIcon from './person.png';
+// import personIcon from './person.png';
 // import { ReactComponent as EllipseIcon } from './ellipse.png';
 
 import sportsIcon from './images/sports.jpg';
@@ -30,22 +31,40 @@ function UserProfile() {
 		alignItems: 'center'
 	};
 
+	// let userInfo;
+
+	// useEffect(() => {
+	// 	async function fetchData() {
+	// 		let user = Pool.getCurrentUser();
+	// 		console.log("user: ", user);	
+	// 		let attributes = user.getUserAttributes();
+	// 		console.log("attributes: ", attributes);	
+	// 	}
+
+	// 	fetchData();
+	// 	// userInfo = await axios.get(`https://h0kvzfoszc.execute-api.us-west-1.amazonaws.com/dev/settings?email=${attributes.email}`)
+	// });
+
   return (
     <>
 			<div className='heading' style={{ backgroundColor: '#E5E5E5' }}>
-				<div className='heading-text'>
-					<h1>-iconhere-</h1>
-					<h1>Hello FirstName</h1>    
+				<div className='space-x-50'>
+					<div className='heading-icon'>
+						<FaRegUserCircle size={100} />
+					</div>
+					<div className='heading-text'>
+						<h1>Hello FirstName</h1>    
+					</div>
 				</div>
 			</div>
 
 			{/* <div className='vertical-divider'/> */}
-			<div className="">
-					<button onClick={() => setOpen(true)} type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-						Edit Settings
-					</button>
-			</div>
 
+			<div className="">
+				<button onClick={() => setOpen(true)} type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+					Edit Settings
+				</button>
+			</div>
 
 			{/* MODAL */}
 			<Transition.Root show={open} as={Fragment}>
@@ -80,12 +99,6 @@ function UserProfile() {
 												<Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
 													Edit Settings
 												</Dialog.Title>
-												{/* <div className="mt-2">
-													<p className="text-sm text-gray-500">
-														Are you sure you want to deactivate your account? All of your data will be permanently
-														removed. This action cannot be undone.
-													</p>
-												</div> */}
 											</div>
 										</div>
 									</div>
@@ -103,7 +116,6 @@ function UserProfile() {
 															<div className="md:col-span-1">
 																<div className="px-4 sm:px-0">
 																	<h3 className="text-lg font-medium leading-6 text-gray-900">Categories Subscriptions:</h3>
-																	{/* <p className="mt-1 text-sm text-gray-600">Decide which categories you want to see!</p> */}
 																</div>
 															</div>
 
@@ -252,7 +264,6 @@ function UserProfile() {
 															<div className="md:col-span-1">
 																<div className="px-4 sm:px-0">
 																	<h3 className="text-lg font-medium leading-6 text-gray-900">Frequency of Newsletter:</h3>
-																	{/* <p className="mt-1 text-sm text-gray-600">Daily or Monthly</p> */}
 																</div>
 															</div>
 
@@ -280,7 +291,6 @@ function UserProfile() {
 																</label>
 															</div>
 														</div>
-
 
 													</div>    {/* End Grid */}
 												</div>		{/* End BG Color */}
