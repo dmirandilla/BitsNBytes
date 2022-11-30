@@ -4,7 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 import Pool from "../UserPool";
 
 const Login = () => {
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const { authenticate } = useContext(AccountContext);
@@ -14,7 +14,7 @@ const Login = () => {
     const onLogin = (event) => {
 			event.preventDefault();
 			
-			authenticate(email, password)
+			authenticate(username, password)
 				.then((data) => {
 						console.log("Logged in!", data);
 						alert("Successfully logged in");
@@ -75,8 +75,8 @@ const Login = () => {
 										required
 										className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
 										placeholder="Username"
-										value={email}
-										onChange={(event) => setEmail(event.target.value)}
+										value={username}
+										onChange={(event) => setUsername(event.target.value)}
 									/>
 								</div>
 								<div>
@@ -132,13 +132,9 @@ const Login = () => {
 
 
     return(
-			<>
 			<div className="container">
 				{checkSession() ? loggedInMessage() : loginComponent()}
 			</div>
-			
-			
-			</>
     );
 }
 
