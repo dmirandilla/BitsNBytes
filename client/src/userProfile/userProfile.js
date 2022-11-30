@@ -3,11 +3,6 @@ import React from 'react';
 
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-// import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-
-// import HomeIcon from './house.png';
-// import PersonIcon from './person.png';
-// import { ReactComponent as EllipseIcon } from './ellipse.png';
 
 import sportsIcon from './images/sports.jpg';
 import foodIcon from './images/food.jpg';
