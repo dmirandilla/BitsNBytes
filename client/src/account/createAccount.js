@@ -163,8 +163,8 @@ const CreateAccount = () => {
                 // console.log("ADD RES: ", addRes);
 
                 alert("Successfully entered code!");
-                history.push('/login');
-                history.go('/login');
+                history.push('/categorySelection');
+                history.go('/categorySelection');
             }
         });
     }
