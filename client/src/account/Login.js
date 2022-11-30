@@ -28,22 +28,14 @@ const Login = () => {
     };
 
     const checkSession = () => {
-        let user = Pool.getCurrentUser();
+			let user = Pool.getCurrentUser();
 
-        if (user) {
-            return true;
-        } else {
-            return false;
-        }
+			if (user) {
+					return true;
+			} else {
+					return false;
+			}
     }
-
-		const loggedInMessage = () => (
-			<>
-			<h1>You are already logged in!</h1>
-			<br/>
-			<p>Return to the BitsNBytes home page to sign out.</p>
-			</>
-		);
 
 		const loginComponent = () => (
 			<div className="flex min-h-full items-center justify-center py-80 px-4 sm:px-6 lg:px-8">
@@ -134,7 +126,6 @@ const Login = () => {
 
     return(
 			<div className="container">
-				{/* {checkSession() ? loggedInMessage() : loginComponent()} */}
 				{checkSession() ? <LoggedIn /> : loginComponent()}
 			</div>
     );

@@ -1,8 +1,11 @@
-import { useState } from 'react'
-import { Dialog } from '@headlessui/react'
+import { useState, useContext } from 'react';
+import { Dialog } from '@headlessui/react';
+import { AccountContext } from "../account/Account";
 
 export default function LoggedIn() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const { logout } = useContext(AccountContext);
 
   return (
     <div className="isolate bg-white">
@@ -105,11 +108,21 @@ export default function LoggedIn() {
                 </p>
                 <div className="mt-8 flex gap-x-4 sm:justify-center">
                   <a
-                    href="#"
                     className="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700"
+                    href="/"
                   >
                     Go Home
                     <span className="text-indigo-200" aria-hidden="true">
+                      &rarr;
+                    </span>
+                  </a>
+                  <a
+                    className="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+                    href="/login"
+                    onClick={() => logout()}
+                  >
+                    Logout
+                    <span className="text-gray-400" aria-hidden="true">
                       &rarr;
                     </span>
                   </a>
