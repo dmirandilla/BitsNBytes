@@ -6,7 +6,6 @@ import { Account } from "./account/Account";
 import CreateAccount from "./account/createAccount";
 import Login from "./account/Login";
 
-
 function App() {
   return (
     <BrowserRouter>
