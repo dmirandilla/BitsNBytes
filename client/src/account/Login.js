@@ -4,6 +4,8 @@ import { useHistory, Link } from 'react-router-dom';
 import Pool from "../UserPool";
 import LoggedIn from './LoggedIn';
 
+import logo from "../account/images/logo.jpg";
+
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -73,7 +75,7 @@ const Login = () => {
 						<div>
 								<img
 									className="mx-auto h-12 w-auto"
-									src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+									src={logo}
 									alt="Your Company"
 								/>
 								<h2 className="mt-6 text-center text-6xl font-bold tracking-tight text-gray-900">

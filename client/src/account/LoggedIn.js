@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
-import { Dialog } from '@headlessui/react';
 import { AccountContext } from "../account/Account";
+
+import logo from "../account/images/logo.jpg";
 
 export default function LoggedIn() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -45,7 +46,7 @@ export default function LoggedIn() {
             <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">BitsNBytes</span>
-                <img className="h-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+                <img className="h-8" src={logo} alt="" />
               </a>
             </div>
             <div className="flex lg:hidden">
@@ -123,7 +124,7 @@ export default function LoggedIn() {
                   </defs>
                 </svg>
               </div>
-              
+
             </div>
           </div>
         </div>

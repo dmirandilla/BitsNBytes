@@ -6,8 +6,6 @@ import { Account } from "./account/Account";
 import CreateAccount from "./account/createAccount";
 import Login from "./account/Login";
 
-import Home from "./loading-navbar/Home";
-import NavBar from "./loading-navbar/NavBar";
 import CategorySelection from "./account/categorySelection"
 
 function App() {
@@ -19,10 +17,7 @@ function App() {
           <Route exact path="/userProfile" component={UserProfile} />  
           <Route exact path="/createAccount" component={CreateAccount} />  
           <Route exact path="/login" component={Login} />  
-
-          <Route exact path="/navbar" component={NavBar} />  
           <Route exact path="/categorySelection" component={CategorySelection} />
-
         </Account>
         <Redirect to="/" />
         
