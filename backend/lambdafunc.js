@@ -1,4 +1,5 @@
-const AWS = require("aws-sdk");
+const AWS = require("aws-sdk"); 
+
 AWS.config.update({ 
     region: "us-west-1"
 });
@@ -17,7 +18,7 @@ exports.handler = async function(event) {
             response = buildResponse(200);
             break;
         case event.httpMethod === 'GET' && event.path === settingPath:
-            response = await querySettings(event.queryStringParameters.email);
+            response = await querySettings(event.queryStringParameters.username);
             break;
         case event.httpMethod === 'POST' && event.path === settingPath:
             response = await createSettings(JSON.parse(event.body));
@@ -27,23 +28,23 @@ exports.handler = async function(event) {
             response = await editSettings(JSON.parse(event.body));
             break;
         case event.httpMethod === 'DELETE' && event.path === settingPath:
-            response = await deleteSettings(JSON.parse(event.body)['email']);
+            response = await deleteSettings(JSON.parse(event.body)['username']);
             break;
     }
 
     return response;
 }
 
-async function querySettings(email) {
+async function querySettings(username) {
     var docClient = new AWS.DynamoDB.DocumentClient();
     const params = {
         ExpressionAttributeNames: {
-            "#theUser": "email"
+            "#theUser": "username"
         },
         ExpressionAttributeValues: {
-            ":email": email
+            ":username": username
         }, 
-        KeyConditionExpression: "#theUser = :email", 
+        KeyConditionExpression: "#theUser = :username", 
         TableName: dynamodbTableName
     }; 
 
@@ -77,13 +78,13 @@ async function editSettings(requestBody) {
 
     // requestBody is a JSON, get the individual items
     const rBody = JSON.parse(JSON.stringify(requestBody));
-    const email = rBody.email;
+    const username = rBody.username;
     const { sports, finance, healthfitness, memes, frequency, lastUpdated }  = rBody.settings;
 
     let params = {
         TableName: dynamodbTableName,
         Key: {
-            'email': email,
+            'username': username,
         },
         UpdateExpression: `set sports = :sportsVal, 
             finance = :financeVal, 
@@ -115,12 +116,11 @@ async function editSettings(requestBody) {
         console.error("PATCHERROR: Could not patch user settings! : ", error);
     });
 }
-
-async function deleteSettings(email) {
+async function deleteSettings(username) {
     const params = {
         TableName: dynamodbTableName,
         Key: {
-            'email': email
+            'username': username
         },
         ReturnValues: 'ALL_OLD'
     }
@@ -140,7 +140,12 @@ function buildResponse(statusCode, body) {
     return {
         statusCode: statusCode,
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Headers" : "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
+            "Access-Control-Allow-Methods" : "OPTIONS,POST,PUT,GET,DELETE,PATCH",
+            "Access-Control-Allow-Credentials" : true,
+            "Access-Control-Allow-Origin" : "*",
+            "X-Requested-With" : "*"
         },
         body: JSON.stringify(body)
     }

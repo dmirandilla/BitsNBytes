@@ -37,30 +37,32 @@
     transform: translateY(-50%);
 }
 
-.personalInfo {
-    padding-top: 45%;
-}
+.heading-home {
+    font-size: 150%;
 
-.settings {
-    
-}
+    left: 95%;
+    font-family: 'Nunito-Sans';
 
-.row {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    padding-top: 35%;
-    padding-left: 10%;
+
+    margin: 0;
+    position: absolute;
+    top: 15%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
-.column {
+.settings-button {
+    left: 95%;
+    font-family: 'Nunito-Sans';
+
     display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
-}
+    flex-direction: row;
 
-.information {
-    height: 25%;
+    margin: 0;
+    position: absolute;
+    top: 15%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }

@@ -1,8 +1,7 @@
 import './UserProfile.css'
 import React, { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-<<<<<<< HEAD
-import { FaRegUserCircle } from 'react-icons/fa';
+import { FaRegUserCircle, FaHome } from 'react-icons/fa';
 
 import axios from 'axios';
 import Pool from '../UserPool';
@@ -10,8 +9,6 @@ import Pool from '../UserPool';
 // import HomeIcon from './house.png';
 // import personIcon from './person.png';
 // import { ReactComponent as EllipseIcon } from './ellipse.png';
-=======
->>>>>>> origin/main
 
 import sportsIcon from './images/sports.jpg';
 import foodIcon from './images/food.jpg';
@@ -24,6 +21,7 @@ import memeIcon from './images/meme.jpg';
 
 function UserProfile() {
 	const [open, setOpen] = useState(false);
+	const [userInfo, setUserInfo] = useState({});
 
 	const cancelButtonRef = useRef(null);
 
@@ -34,19 +32,24 @@ function UserProfile() {
 		alignItems: 'center'
 	};
 
-	// let userInfo;
+	let user = Pool.getCurrentUser();
+	let username = user.getUsername();
 
-	// useEffect(() => {
-	// 	async function fetchData() {
-	// 		let user = Pool.getCurrentUser();
-	// 		console.log("user: ", user);	
-	// 		let attributes = user.getUserAttributes();
-	// 		console.log("attributes: ", attributes);	
-	// 	}
+	useEffect(() => {
+		async function fetchData() {
+			const apiURL = `https://h0kvzfoszc.execute-api.us-west-1.amazonaws.com/dev/settings?username=${username}`;
 
-	// 	fetchData();
-	// 	// userInfo = await axios.get(`https://h0kvzfoszc.execute-api.us-west-1.amazonaws.com/dev/settings?email=${attributes.email}`)
-	// });
+			await axios.get(apiURL)
+				.then(function({data}) {
+					setUserInfo(data);
+				})
+				.catch(function(err) {
+					console.log("ERR: ", err);
+				});
+		}
+
+		fetchData();
+	}, []);
 
   return (
     <>
@@ -56,14 +59,19 @@ function UserProfile() {
 						<FaRegUserCircle size={100} />
 					</div>
 					<div className='heading-text'>
-						<h1>Hello FirstName</h1>    
+						<h1>Hello, {userInfo.username}!</h1>  
+					</div>
+					<div className='heading-home'>
+						<a
+							href='/'
+						>
+							<FaHome size={50} />
+						</a>
 					</div>
 				</div>
 			</div>
 
-			{/* <div className='vertical-divider'/> */}
-
-			<div className="">
+			<div className="place-content-center h-56s">
 				<button onClick={() => setOpen(true)} type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
 					Edit Settings
 				</button>
