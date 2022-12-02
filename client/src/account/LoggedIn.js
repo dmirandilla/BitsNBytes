@@ -31,8 +31,6 @@ const LoggedIn = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
 
-  const [row1, setRow1] = useState([])
-
 
   useEffect(() => {
     async function getUserInfo() {
