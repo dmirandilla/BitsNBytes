@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { CognitoUser } from "amazon-cognito-identity-js";
 import axios from 'axios'
 ;
 import UserPool from "../UserPool";
+import { AccountContext } from './Account';
 import Logo from './images/logoGrey.png';
 
 const CreateAccount = () => {
@@ -16,6 +17,9 @@ const CreateAccount = () => {
 
     //if new user, direct them to the category selection page 
     const [newUser, setNewUser] = useState(false);
+
+		// Used to login user after successfully creating an account
+		const { authenticate } = useContext(AccountContext);
 
 
     const passReq = "Password must be at least length of 8 and include a number, uppercase & lowercase letter";
@@ -184,12 +188,15 @@ const CreateAccount = () => {
                 console.log(err.message);
                 alert("Incorrect Confirmation Code");
             } else { 
-                console.log("User confirm registration: ", data);
-								addToDynamo(username);
-
-                alert("Successfully entered code!");
-                history.push('/categorySelection');
-                history.go('/categorySelection');
+                // console.log("User confirm registration: ", data);
+								addToDynamo(username)
+									.then(() => {
+										loginUser();
+									})
+									.finally(() => {
+										alert("Successfully entered code!");
+										history.push('/categorySelection');	
+									});
             }
         });
     }
@@ -233,6 +240,18 @@ const CreateAccount = () => {
 					console.log("addToDynamo ERR: ", err);
 				});
 		}
+
+		// Same code as in login.js
+		// If a user creates an account they will automatically login with that account
+		const loginUser = async () => {
+			await authenticate(username, password)
+				.then((data) => {
+						console.log("Logged in!", data);
+				})
+				.catch((err) => {
+						console.error("Failed to login", err);
+				});
+    };
 
 
     return(
