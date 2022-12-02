@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import { Fragment, useRef, useState } from 'react'
@@ -12,6 +11,8 @@ import musicIcon from './images/music.jpg';
 import healthfitnessIcon from './images/healthfitness.jpg';
 import financeIcon from './images/finance.jpg';
 import memeIcon from './images/meme.jpg';
+
+import User from '../account/images/user.jpg';
 
 function UserProfile() {
 	const [open, setOpen] = useState(false);
@@ -27,19 +28,36 @@ function UserProfile() {
 
   return (
     <>
-			<div className='heading' style={{ backgroundColor: '#E5E5E5' }}>
-				<div className='heading-text'>
-					<h1>-iconhere-</h1>
-					<h1>Hello FirstName</h1>    
-				</div>
-			</div>
+	{/* <!-- main - parent div --> */}
+	<div class="main bg-gray-200 grid place-items-center h-screen">
+	{/* <!--card--> */}
+	<div class="card bg-white flex flex-col items-center justify-center p-4 shadow-lg rounded-2xl w-96 h-96">
+		{/* <!--profile-image--> */}
+		<div class="profile mx-auto rounded-full py-2 w-16 "> 
+			<img src={User} alt="profile"/>
+		</div>
+		{/* <!--name--> */}
+		<div class="name text-gray-800 text-2xl font-medium mt-4 ">
+			<p>Hello</p>
+		</div>
+		{/* <!--username--> */}
+		<div class="username text-gray-500 pb-8">
+			<p>USERNAME HERE</p>
+		</div>
 
-			{/* <div className='vertical-divider'/> */}
-			<div className="">
-					<button onClick={() => setOpen(true)} type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+		{/* <!-- follow button --> */}
+		<div className="">
+					<button onClick={() => setOpen(true)} type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white 
+					shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
 						Edit Settings
 					</button>
 			</div>
+	</div>
+</div>
+
+
+			{/* <div className='vertical-divider'/> */}
+			
 
 
 			{/* MODAL */}
@@ -110,7 +128,7 @@ function UserProfile() {
 																		id="sports"
 																		name="sports"
 																		type="checkbox"
-																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
 																	/>
 																</div>
 																<div className="ml-3 text-sm" style={inlineDivStyle}>
@@ -127,7 +145,7 @@ function UserProfile() {
 																		id="food"
 																		name="food"
 																		type="checkbox"
-																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
 																	/>
 																</div>
 																<div className="ml-3 text-sm">
@@ -144,7 +162,7 @@ function UserProfile() {
 																		id="tech"
 																		name="tech"
 																		type="checkbox"
-																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
 																	/>
 																</div>
 																<div className="ml-3 text-sm">
@@ -161,7 +179,7 @@ function UserProfile() {
 																		id="travel"
 																		name="travel"
 																		type="checkbox"
-																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
 																	/>
 																</div>
 																<div className="ml-3 text-sm">
@@ -178,7 +196,7 @@ function UserProfile() {
 																		id="music"
 																		name="music"
 																		type="checkbox"
-																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
 																	/>
 																</div>
 																<div className="ml-3 text-sm">
@@ -195,7 +213,7 @@ function UserProfile() {
 																		id="healthfitness"
 																		name="healthfitness"
 																		type="checkbox"
-																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
 																	/>
 																</div>
 																<div className="ml-3 text-sm">
@@ -212,7 +230,7 @@ function UserProfile() {
 																		id="finance"
 																		name="finance"
 																		type="checkbox"
-																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
 																	/>
 																</div>
 																<div className="ml-3 text-sm">
@@ -229,7 +247,7 @@ function UserProfile() {
 																		id="memes"
 																		name="memes"
 																		type="checkbox"
-																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
 																	/>
 																</div>
 																<div className="ml-3 text-sm">
@@ -257,7 +275,7 @@ function UserProfile() {
 																	id="daily"
 																	name="frequency"
 																	type="radio"
-																	className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																	className="h-4 w-4 border-gray-300 text-red-600 focus:ring-red-500"
 																/>
 																<label htmlFor="daily" className="ml-3 block text-sm font-medium text-gray-700">
 																	Daily
@@ -268,7 +286,7 @@ function UserProfile() {
 																	id="weekly"
 																	name="frequency"
 																	type="radio"
-																	className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																	className="h-4 w-4 border-gray-300 text-red-600 focus:ring-red-500"
 																/>
 																<label htmlFor="weekly" className="ml-3 block text-sm font-medium text-gray-700">
 																	Weekly
@@ -286,7 +304,7 @@ function UserProfile() {
 											<div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
 												<button
 													type="submit"
-													className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+													className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
 													onClick={() => setOpen(false)}
 													ref={cancelButtonRef}
 												>
@@ -295,7 +313,7 @@ function UserProfile() {
 														
 												<button
 													type="button"
-													className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+													className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
 													onClick={() => setOpen(false)}
 													ref={cancelButtonRef}
 												>

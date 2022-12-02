@@ -3,6 +3,7 @@ import { AccountContext } from './Account';
 import { useHistory, Link } from 'react-router-dom';
 import Pool from "../UserPool";
 import LoggedIn from './LoggedIn';
+import Business from './business';
 
 import logo from "../account/images/logo.jpg";
 
@@ -188,7 +189,7 @@ const Login = () => {
 
     return(
 		<div className=" max-w-full">
-			{checkSession() ? <LoggedIn /> : loginComponent()}
+			{checkSession() ? <Business /> : loginComponent()}
 		</div>
     );
 }
