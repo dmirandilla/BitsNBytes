@@ -185,14 +185,14 @@ const CreateAccount = () => {
         /*
             If user enters correct code, add to DynamoDB 
         */
-        user.confirmRegistration(code, false, (err, data) => {
+        user.confirmRegistration(code, false, async (err, data) => {
             if (err) {
                 console.log(err);
                 console.log(err.message);
                 alert("Incorrect Confirmation Code");
             } else { 
                 // console.log("User confirm registration: ", data);
-								addToDynamo(username)
+								await addToDynamo(username)
 									.then(() => {
 										loginUser();
 									})
