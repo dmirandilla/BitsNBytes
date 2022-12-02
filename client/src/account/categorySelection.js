@@ -89,7 +89,7 @@ const CategorySelection = () => {
 										</div>
 										<div className="ml-3">
 											<label htmlFor="food" className="text-2xl font-bold text-gray-700">
-												Food <img src={foodIcon} style={inlineDivStyle} />
+												Business <img src={financeIcon} style={inlineDivStyle} />
 											</label>
 										</div>
 									</div>
@@ -106,7 +106,7 @@ const CategorySelection = () => {
 										</div>
 										<div className="ml-3 ">
 											<label htmlFor="tech" className="text-2xl font-bold text-gray-700">
-												Tech <img src={techIcon} style={inlineDivStyle} />
+												Entertainment <img src={techIcon} style={inlineDivStyle} />
 											</label>
 										</div>
 									</div>
@@ -123,7 +123,7 @@ const CategorySelection = () => {
 										</div>
 										<div className="ml-3">
 											<label htmlFor="travel" className="text-2xl font-bold text-gray-700">
-												Travel <img src={travelIcon} style={inlineDivStyle} />
+												General <img src={travelIcon} style={inlineDivStyle} />
 											</label>
 										</div>
 									</div>
@@ -140,7 +140,7 @@ const CategorySelection = () => {
 										</div>
 										<div className="ml-3 ">
 											<label htmlFor="music" className="text-2xl font-bold text-gray-700">
-												Music <img src={musicIcon} style={inlineDivStyle} />
+												Health <img src={healthfitnessIcon} style={inlineDivStyle} />
 											</label>
 										</div>
 									</div>
@@ -157,7 +157,7 @@ const CategorySelection = () => {
 										</div>
 										<div className="ml-3 ">
 											<label htmlFor="healthfitness" className="text-2xl font-bold text-gray-700">
-												Health/Fitness <img src={healthfitnessIcon} style={inlineDivStyle} />
+												Science <img src={healthfitnessIcon} style={inlineDivStyle} />
 											</label>
 										</div>
 									</div>
@@ -174,27 +174,12 @@ const CategorySelection = () => {
 										</div>
 										<div className="ml-3 ">
 											<label htmlFor="finance" className="text-2xl font-bold text-gray-700">
-												Finance <img src={financeIcon} style={inlineDivStyle} />
+												Technology <img src={techIcon} style={inlineDivStyle} />
 											</label>
 										</div>
 									</div>
 
-									{/* Memes */}
-									<div className="flex items-start">
-										<div className="flex h-5 items-center">
-											<input
-												id="memes"
-												name="memes"
-												type="checkbox"
-												className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
-											/>
-										</div>
-										<div className="ml-3 ">
-											<label htmlFor="memes" className="text-2xl font-bold text-gray-700">
-												Memes <img src={memeIcon} style={inlineDivStyle} />
-											</label>
-										</div>
-									</div>
+									
 								</div>
 								{/* End Left Column */}
 
@@ -234,7 +219,7 @@ const CategorySelection = () => {
 								</div>
 
 							<div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-								
+
 						<Link to='/loggedIn'> 
 						<button
 							type="submit"
