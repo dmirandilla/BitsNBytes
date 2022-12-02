@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { CognitoUser } from "amazon-cognito-identity-js";
+import axios from 'axios'
+;
 import UserPool from "../UserPool";
-import { Link } from 'react-router-dom';
 import Logo from './images/logoGrey.png';
 
 const CreateAccount = () => {
@@ -22,25 +23,8 @@ const CreateAccount = () => {
     let history = useHistory();
     let Pool = UserPool;
 
-    // Used to check if user exists in DynamoDB. Assigned value in getUser().
-    let getUserResponse;
-
     const onSubmit = async (event) => {
         event.preventDefault();
-        
-        /*
-            First scan DynamoDB to see if the username exists, then scan Cognito User Pool. 
-        */
-        console.log(`Checking to see if username is available: ${username.toLowerCase()}`);
-        // await getUser();
-
-        // let userData = getUserResponse.data;
-        // console.log("USER GET RES: ", userData);
-        // if(userData) {
-        //     console.log('GET REQ DONE, USERNAME NOT AVAILABLE ');
-        //     alert('Username is not available!');
-        //     return;
-        // }
 
         if (password !== confirmPassword) {
             alert("Password does not match!");
@@ -50,7 +34,11 @@ const CreateAccount = () => {
                 if (err) {
                     console.log("Cognito Error: ", err);
                     console.log(err.message);
-                    alert("There was an error creating your account:\n\n" + err.message);
+										if (err.message === "User already exists") {
+											alert("This username already exists! Please choose another one.")
+										} else {
+											alert("There was an error creating your account:\n\n" + err.message);
+										}
                 } else {
                     console.log(data);
                     alert("Successfully Created Account! Next we will need to confirm your email.");
@@ -134,7 +122,7 @@ const CreateAccount = () => {
 
 
     const enterCode = () => (
-        <form noValidate autoComplete="off" onSubmit={onSubmit}>
+				<form noValidate autoComplete="off" onSubmit={onCodeSubmit}>
         <div className="flex min-h-full items-center justify-center py-80 px-4 sm:px-6 lg:px-8">
             <div className="bg-[#BDC6D1] px-6 py-8 rounded shadow-md text-black container max-w-lg">
             <img className="mx-auto h-20 py-1 w-auto items-center" src={Logo}/>
@@ -153,26 +141,31 @@ const CreateAccount = () => {
 
                 <button
                     type="submit"
-                    className="w-full text-center py-3 rounded bg-[#D90429] text-white hover:bg-[#5b1e28] focus:outline-none my-1">
-                        Confirm
+                    className="w-full text-center py-3 rounded bg-[#D90429] text-white hover:bg-[#5b1e28] focus:outline-none my-1"
+								>
+										Confirm
                 </button>
 
                 <button
-                    type="back"
                     className="w-full text-center py-3 rounded bg-[#2B2D42] text-white hover:bg-[#5b1e28] focus:outline-none my-1"
                     onClick={resendCode}
-                >Resend Code</button>
+                    type="back"
+                >
+									Resend Code
+								</button>
 
                 <Link to="/login">
-                <button
-                    type="back"
-                    className="w-full text-center py-3 rounded bg-[#2B2D42] text-white hover:bg-[#5b1e28] focus:outline-none my-1"
-                >Cancel</button>
+									<button
+											className="w-full text-center py-3 rounded bg-[#2B2D42] text-white hover:bg-[#5b1e28] focus:outline-none my-1"
+											type="back"
+									>
+										Cancel
+									</button>
                 </Link>
 
-                </div>    
+						</div>    
         </div>
-    </form>
+    		</form>
 );
 
     
@@ -192,9 +185,7 @@ const CreateAccount = () => {
                 alert("Incorrect Confirmation Code");
             } else { 
                 console.log("User confirm registration: ", data);
-                // console.log("Adding to DynamoDB...");
-                // const addRes = addToDynamo();
-                // console.log("ADD RES: ", addRes);
+								addToDynamo(username);
 
                 alert("Successfully entered code!");
                 history.push('/categorySelection');
@@ -219,11 +210,34 @@ const CreateAccount = () => {
         });
     }
 
+		const addToDynamo = async (username) => {
+			const apiURL = "https://h0kvzfoszc.execute-api.us-west-1.amazonaws.com/dev/settings";
+
+			const defaultData = {
+				"username": username,
+				"sports": false,
+				"business": false,
+				"entertainment": false,
+				"health": false,
+				"science": false,
+				"technology": false,
+				"frequency": "daily",
+				"lastUpdated": new Date()
+			}
+
+			await axios.post(apiURL, defaultData)
+				.then(function(res) {
+					console.log("addToDyanmo res: ", res);
+				})
+				.catch(function(err) {
+					console.log("addToDynamo ERR: ", err);
+				});
+		}
+
 
     return(
         <div className="container: max-w-full">
             {changeCode ? enterCode() : createForm()}
-            {/* <h1>createAccount</h1> */}
         </div>
     );
 }
