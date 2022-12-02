@@ -19,23 +19,38 @@ import {
 
 import { HiOutlineMail } from 'react-icons/hi';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
+import Pool from '../UserPool';
 
 const LoggedIn = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { logout } = useContext(AccountContext);
   const [newArticles, setNewsArticles] = useState([])
   const [row1, setRow1] = useState([])
+  const [userInfo, setUserInfo] = useState({});
 
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
 
 
   useEffect(() => {
+    async function getUserInfo() {
+      const user = Pool.getCurrentUser();
+      const username = user.getUsername();
+
+      await axios.get(`https://h0kvzfoszc.execute-api.us-west-1.amazonaws.com/dev/settings?username=${username}`)
+        .then(function ({ data }) {
+          setUserInfo(data);
+        })
+        .catch(function (err) {
+          console.log("Not able to get userInfo! ERR: ", err);
+        });
+    }
+
     async function getNews() {
       await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=50cb523214d247d8bbef954361ffe664&category=sports`)
         .then(res => {
           const newsArticle = res.data.articles;
-          setNewsArticles(newsArticle);
+          setNewsArticles(newsArticle); 
         })
     }
 
@@ -46,12 +61,9 @@ const LoggedIn = () => {
       }
     }
 
-    
+    getUserInfo()
     getNews();
     display()
-    
-
-    console.log(row1)
   }, [])
 
 
@@ -59,7 +71,7 @@ const LoggedIn = () => {
     <div>
 
       {/* LOGO TOP LEFT */}
-  
+
 
       {/* ============================================================================================================ */}
       {/* <div class="heading flex justify-start text-gray-600 capitalize dark:text-gray-300 pt-16 pl-24">
@@ -92,86 +104,33 @@ const LoggedIn = () => {
       </div> */}
 
 
-<div className='fixed w-full h-[110px] flex justify-between items-center px-4 bg-[#0a192f] text-gray-300'>
-      <div>
-        <img src={logoIcon} alt='Logo Image' style={{ width: '200px' }} />
-      </div>
-
-      {/* menu */}
-      <ul className='hidden md:flex'>
-        <li>
-          <Link to='home' smooth={true} duration={500}>
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to='about' smooth={true} duration={500}>
-            About
-          </Link>
-        </li>
-        <li>
-          <Link to='skills' smooth={true} duration={500}>
-            Skills
-          </Link>
-        </li>
-        <li>
-          <Link to='work' smooth={true} duration={500}>
-            Work
-          </Link>
-        </li>
-        <li>
-          <Link to='contact' smooth={true} duration={500}>
-            Contact
-          </Link>
-        </li>
-      </ul>
-
-      {/* Hamburger */}
-      <div onClick={handleClick} className='md:hidden z-10'>
-        {!nav ? <FaBars /> : <FaTimes />}
-      </div>
-
-      {/* Mobile menu */}
-      <ul
-        className={
-          !nav
-            ? 'hidden'
-            : 'absolute top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center'
-        }
-      >
-        <li className='py-6 text-4xl'>
-          <Link onClick={handleClick} to='home' smooth={true} duration={500}>
-            Home
-          </Link>
-        </li>
-        <li className='py-6 text-4xl'>
-          {' '}
-          <Link onClick={handleClick} to='about' smooth={true} duration={500}>
-            About
-          </Link>
-        </li>
-        <li className='py-6 text-4xl'>
-          {' '}
-          <Link onClick={handleClick} to='skills' smooth={true} duration={500}>
-            Skills
-          </Link>
-        </li>
-        <li className='py-6 text-4xl'>
-          {' '}
-          <Link onClick={handleClick} to='work' smooth={true} duration={500}>
-            Work
-          </Link>
-        </li>
-        <li className='py-6 text-4xl'>
-          {' '}
-          <Link onClick={handleClick} to='contact' smooth={true} duration={500}>
-            Contact
-          </Link>
-        </li>
-      </ul>
+      <div className='fixed w-full h-[110px] flex justify-between items-center px-4 bg-[#0a192f] text-gray-300'>
+        <div>
+          <img src={logoIcon} alt='Logo Image' style={{ width: '200px' }} />
         </div>
+
+        {/* menu */}
+        <ul className='hidden md:flex'> 
+          {Object.keys(userInfo).map((category, index) => {
+            if (userInfo[category] === true) {
+              return (
+                <li>
+                  <Link to='home' smooth={true} duration={500}>
+                    {category} 
+                  </Link>
+                </li>
+              );
+            }
+          })}
+        </ul>
+
+        {/* Hamburger */}
+        <div onClick={handleClick} className='md:hidden z-10'>
+          {!nav ? <FaBars /> : <FaTimes />}
+        </div>
+      </div>
       {/* Social icons */}
-     
+
 
 
       <div className="flex justify-center grid grid-cols-5 gap-y-40 py-40 px-40">
