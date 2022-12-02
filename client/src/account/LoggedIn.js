@@ -47,7 +47,7 @@ const LoggedIn = () => {
     }
 
     async function getNews() {
-      await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=50cb523214d247d8bbef954361ffe664&category=sports`)
+      await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=e5d03be9ccc9474d84f3813ff00ebf52&category=sports`)
         .then(res => {
           const newsArticle = res.data.articles;
           setNewsArticles(newsArticle); 
@@ -104,7 +104,7 @@ const LoggedIn = () => {
       </div> */}
 
 
-      <div className='fixed w-full h-[110px] flex justify-between items-center px-4 bg-[#0a192f] text-gray-300'>
+      <div className='flex w-full h-[110px] px-36 justify-between items-center px-4 bg-[#0a192f] text-gray-300'>
         <div>
           <img src={logoIcon} alt='Logo Image' style={{ width: '200px' }} />
         </div>
@@ -138,6 +138,17 @@ const LoggedIn = () => {
           <div key={o}> {o} </div>
         ))}
       </div>
+
+      <a
+        className="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+        href="/login"
+        onClick={() => logout()}
+      >
+        Logout
+        <span className="text-gray-400" aria-hidden="true">
+          &rarr;
+        </span>
+      </a>
 
 
       {/* Main */}
