@@ -123,10 +123,13 @@ const CreateAccount = () => {
                         className="w-full text-center py-3 rounded bg-[#D90429] text-white hover:bg-[#5b1e28] focus:outline-none my-1"
                     >Create Account</button>
 
+                    <Link to='/login'>
                     <button
                         type="back"
                         className="w-full text-center py-3 rounded bg-[#2B2D42] text-white hover:bg-[#5b1e28] focus:outline-none my-1"
                     >Back</button>
+                    </Link>
+
                 </div>    
             </div>
         </form>
@@ -134,7 +137,7 @@ const CreateAccount = () => {
 
 
     const enterCode = () => (
-        <form noValidate autoComplete="off" onSubmit={onSubmit}>
+        <form noValidate autoComplete="off" onSubmit={onCodeSubmit}>
         <div className="flex min-h-full items-center justify-center py-80 px-4 sm:px-6 lg:px-8">
             <div className="bg-[#BDC6D1] px-6 py-8 rounded shadow-md text-black container max-w-lg">
             <img className="mx-auto h-20 py-1 w-auto items-center" src={Logo}/>
@@ -162,13 +165,6 @@ const CreateAccount = () => {
                     className="w-full text-center py-3 rounded bg-[#2B2D42] text-white hover:bg-[#5b1e28] focus:outline-none my-1"
                     onClick={resendCode}
                 >Resend Code</button>
-
-                <Link to="/login">
-                <button
-                    type="back"
-                    className="w-full text-center py-3 rounded bg-[#2B2D42] text-white hover:bg-[#5b1e28] focus:outline-none my-1"
-                >Cancel</button>
-                </Link>
 
                 </div>    
         </div>
