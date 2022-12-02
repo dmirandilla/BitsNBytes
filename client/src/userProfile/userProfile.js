@@ -2,13 +2,10 @@ import './UserProfile.css'
 import React, { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { FaRegUserCircle, FaHome } from 'react-icons/fa';
-
 import axios from 'axios';
-import Pool from '../UserPool';
 
-// import HomeIcon from './house.png';
-// import personIcon from './person.png';
-// import { ReactComponent as EllipseIcon } from './ellipse.png';
+import Pool from '../UserPool';
+import CategorySelection from './existingSettings';
 
 import sportsIcon from './images/sports.jpg';
 import foodIcon from './images/food.jpg';
@@ -50,15 +47,6 @@ function UserProfile() {
 
 		fetchData();
 	}, []);
-
-	const setExistingSelections = () => {
-		for (const category in userInfo) {
-			console.log('category: ', category);
-			if (userInfo[category] == true) {
-				document.getElementById(category).checked = true;
-			}
-		}
-	}
 
 	const changeSelection = (category) => {
 		if (category == "daily" || category == "weekly") {
@@ -125,7 +113,7 @@ function UserProfile() {
 			</div>
 
 
-			<div className='heading' style={{ backgroundColor: '#E5E5E5' }}>
+			{/* <div className='heading' style={{ backgroundColor: '#E5E5E5' }}>
 				<div className='space-x-50'>
 					<div className='heading-icon'>
 						<FaRegUserCircle size={100} />
@@ -141,13 +129,15 @@ function UserProfile() {
 						</a>
 					</div>
 				</div>
-			</div>
+			</div> */}
 
 			<div className="place-content-center h-56s">
 				<button onClick={() => setOpen(true)} type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
 					Edit Settings
 				</button>
 			</div>
+
+			<CategorySelection />
 
 			{/* MODAL */}
 			<Transition.Root show={open} as={Fragment}>
@@ -422,7 +412,7 @@ function UserProfile() {
 					</defs>
 				</svg>
 			</div>
-			
+
     </div>
   );
 }
