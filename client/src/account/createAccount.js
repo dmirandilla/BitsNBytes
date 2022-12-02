@@ -134,27 +134,46 @@ const CreateAccount = () => {
 
 
     const enterCode = () => (
-        <>
-            <h1>Enter the Confirmation Code sent to your email:</h1>
-            <br/>
-            <p>If you don't see it, check your spam/junk.</p>
-            <br/><br/>
-            <form noValidate autoComplete="off" onSubmit={onCodeSubmit}>
-                <input
+        <form noValidate autoComplete="off" onSubmit={onSubmit}>
+        <div className="flex min-h-full items-center justify-center py-80 px-4 sm:px-6 lg:px-8">
+            <div className="bg-[#BDC6D1] px-6 py-8 rounded shadow-md text-black container max-w-lg">
+            <img className="mx-auto h-20 py-1 w-auto items-center" src={Logo}/>
+                <h1 className="font-bold mb-8 text-3xl text-center">Confirmation code sent you your email</h1>
+                <input 
+                    type="text"
+                    className="block border border-grey-light w-full p-3 rounded mb-4"
+                    name="Confirmation Code"
+                    placeholder="Confirmation Code" 
+                    //Cam's code
                     required
                     label="Confirmation Code"
                     value={code}
                     onChange={(event) => setCode(event.target.value)}
                 />
-                <br/><br/>
-                <div className="centerButton">
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-            <br/>
-            <button onClick={resendCode}>Resend Code</button>
-        </>
-    );
+
+                <button
+                    type="submit"
+                    className="w-full text-center py-3 rounded bg-[#D90429] text-white hover:bg-[#5b1e28] focus:outline-none my-1">
+                        Confirm
+                </button>
+
+                <button
+                    type="back"
+                    className="w-full text-center py-3 rounded bg-[#2B2D42] text-white hover:bg-[#5b1e28] focus:outline-none my-1"
+                    onClick={resendCode}
+                >Resend Code</button>
+
+                <Link to="/login">
+                <button
+                    type="back"
+                    className="w-full text-center py-3 rounded bg-[#2B2D42] text-white hover:bg-[#5b1e28] focus:outline-none my-1"
+                >Cancel</button>
+                </Link>
+
+                </div>    
+        </div>
+    </form>
+);
 
     
     const onCodeSubmit = async (event) => {
