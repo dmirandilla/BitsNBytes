@@ -87,9 +87,10 @@ function UserProfile() {
 		})
 		.catch(function(err) {
 			console.error("PATCH ERROR: ", err);
+		})
+		.finally(() => {
+			setOpen(false);
 		});
-
-		setOpen(false);
 	}
 
   return (
@@ -156,7 +157,7 @@ function UserProfile() {
 									</div>
 
 									<div className="mt-5 md:col-span-2 md:mt-0">
-										<form action="#" method="POST">
+										<form>
 											<div className="overflow-hidden shadow sm:rounded-md">
 												<div className="bg-white px-4 py-5 sm:p-6">
 													<div className="grid grid-cols-2 gap-6">
@@ -338,7 +339,7 @@ function UserProfile() {
 													type="submit"
 													className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
 													onClick={() => onSave()}
-													ref={cancelButtonRef}
+													// ref={cancelButtonRef}
 												>
 													Save
 												</button>
