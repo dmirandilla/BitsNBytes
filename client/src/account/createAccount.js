@@ -6,6 +6,7 @@ import axios from 'axios'
 import UserPool from "../UserPool";
 import { AccountContext } from './Account';
 import Logo from './images/logoGrey.png';
+import CategorySelection from './categorySelection';
 
 const CreateAccount = () => {
     const [email, setEmail] = useState("");
@@ -14,6 +15,7 @@ const CreateAccount = () => {
     const [username, setUsername] = useState("");
     const [changeCode, setChangeCode] = useState(false);
     const [code, setCode] = useState("");
+    const [registered, setRegistered] = useState(false);
 
     //if new user, direct them to the category selection page 
     const [newUser, setNewUser] = useState(false);
@@ -194,9 +196,6 @@ const CreateAccount = () => {
                 // console.log("User confirm registration: ", data);
                 addToDynamo(username)
                     .then(() => {
-                        loginUser();
-                    })
-                    .finally(() => {
                         alert("Successfully entered code!");
                         history.push('/categorySelection');
                         history.go('/categorySelection')
@@ -245,22 +244,14 @@ const CreateAccount = () => {
             });
     }
 
-    // Same code as in login.js
-    // If a user creates an account they will automatically login with that account
-    const loginUser = async () => {
-        await authenticate(username, password)
-            .then((data) => {
-                console.log("Logged in!", data);
-            })
-            .catch((err) => {
-                console.error("Failed to login", err);
-            });
-    };
 
 
     return (
         <div className="container: max-w-full">
-            {changeCode ? enterCode() : createForm()}
+            { registered 
+                ? <CategorySelection username={username} />
+                : changeCode ? enterCode() : createForm()
+            }
         </div>
     );
 }

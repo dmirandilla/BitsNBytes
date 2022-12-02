@@ -15,10 +15,7 @@ import financeIcon from './images/finance.jpg';
 import memeIcon from './images/meme.jpg';
 import logoIcon from './images/logo.jpg';
 
-const CategorySelection = () => {
-	const user = Pool.getCurrentUser();
-	const username = user.getUsername();
-
+const CategorySelection = (username) => {
 	const [open, setOpen] = useState(false);
 	const [userInfo, setUserInfo] = useState({
 		"username": username,
@@ -70,14 +67,14 @@ const CategorySelection = () => {
 			console.error("PATCH ERROR: ", err);
 		})
 		.finally(() => {
-			history.go("/");
+			history.go("/login");
 		});
 	}
 
 	return (
 		<>
 			<div className='heading py-16 px-16'>
-				<img className="w-[300px] h-[300p]" src={logoIcon} />
+				{/* <img className="w-[300px] h-[300p]" src={logoIcon} /> */}
 				{/* <div className='heading-text'>
 					<h1 className="px-4">-iconhere-</h1>
 					<h1>Hello username</h1>    
