@@ -9,6 +9,7 @@ import NavBar from "./account/navbar";
 import CategorySelection from "./account/categorySelection"
 import LoggedIn from "./account/LoggedIn";
 
+
 function App() {
   return (
     <BrowserRouter>
