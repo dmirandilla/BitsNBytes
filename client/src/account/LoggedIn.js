@@ -17,12 +17,16 @@ import {
   FaLinkedinIn,
 } from 'react-icons/fa';
 
+import { HiOutlineMail } from 'react-icons/hi';
+import { BsFillPersonLinesFill } from 'react-icons/bs';
+import Pool from '../UserPool';
 
 const LoggedIn = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { logout } = useContext(AccountContext);
   const [newArticles, setNewsArticles] = useState([])
-  
+  const [row1, setRow1] = useState([])
+  const [userInfo, setUserInfo] = useState({});
 
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
@@ -31,11 +35,24 @@ const LoggedIn = () => {
 
 
   useEffect(() => {
+    async function getUserInfo() {
+      const user = Pool.getCurrentUser();
+      const username = user.getUsername();
+
+      await axios.get(`https://h0kvzfoszc.execute-api.us-west-1.amazonaws.com/dev/settings?username=${username}`)
+        .then(function ({ data }) {
+          setUserInfo(data);
+        })
+        .catch(function (err) {
+          console.log("Not able to get userInfo! ERR: ", err);
+        });
+    }
+
     async function getNews() {
       await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=e5d03be9ccc9474d84f3813ff00ebf52&category=business`)
         .then(res => {
           const newsArticle = res.data.articles;
-          setNewsArticles(newsArticle);
+          setNewsArticles(newsArticle); 
         })
     }
 
@@ -45,11 +62,11 @@ const LoggedIn = () => {
         )
       }
     }
+
+    getUserInfo()
     getNews();
     display()
-
-    console.log(row1)
-  }, [newArticles])
+  }, [])
 
 
   return (
@@ -95,60 +112,24 @@ const LoggedIn = () => {
         </div>
 
         {/* menu */}
-        <ul className='flex space-x-16 hidden md:flex'>
-          <li>
-            <Link className="text-2xl border-b-2 border-transparent hover:text-red-800 dark:hover:text-red-200 hover:border-red-500" to='/business'  duration={500}>
-              Business
-            </Link>
-          </li>
-          <li>
-            <Link className="text-2xl border-b-2 border-transparent hover:text-red-800 dark:hover:text-red-200 hover:border-red-500" to='/entertainment'  duration={500}>
-              Entertainment
-            </Link>
-          </li>
-          
-          <li>
-            <Link className="text-2xl border-b-2 border-transparent hover:text-red-800 dark:hover:text-red-200 hover:border-red-500" to='/health'  duration={500}>
-              Health
-            </Link>
-          </li>
-          <li>
-            <Link className="text-2xl border-b-2 border-transparent hover:text-red-800 dark:hover:text-red-200 hover:border-red-500" to='/science'  duration={500}>
-              Science
-            </Link>
-          </li>
-
-          <li>
-            <Link className="text-2xl border-b-2 border-transparent hover:text-red-800 dark:hover:text-red-200 hover:border-red-500" to='/sports'  duration={500}>
-              Sports
-            </Link>
-          </li>
-
-          <li>
-            <Link className="text-2xl border-b-2 border-transparent hover:text-red-800 dark:hover:text-red-200 hover:border-red-500" to='/technology'  duration={500}>
-              Technology
-            </Link>
-          </li>
-
-          <li>
-            <Link className="text-2xl border-b-2 border-transparent hover:text-red-800 dark:hover:text-red-200 hover:border-red-500" to='/login' onClick={() => logout()}  duration={500}>
-              Logout
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/userProfile">
-            <img className="h-[50px] w-[50px]" src={User}/>
-            </Link>
-          </li>
-
+        <ul className='hidden md:flex'> 
+          {Object.keys(userInfo).map((category, index) => {
+            if (userInfo[category] === true) {
+              return (
+                <li>
+                  <Link to={`/${category}`} smooth={true} duration={500}>
+                    {category}  
+                  </Link>
+                </li>
+              );
+            }
+          })}
         </ul>
 
         {/* Hamburger */}
         <div onClick={handleClick} className='md:hidden z-10'>
           {!nav ? <FaBars /> : <FaTimes />}
         </div>
-
       </div>
       {/* Social icons */}
 

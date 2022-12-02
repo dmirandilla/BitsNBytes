@@ -1,0 +1,68 @@
+.heading {
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    height: 25%;
+    top: 5%;
+}
+
+.heading-icon {
+    left: 3%;
+    font-family: 'Nunito-Sans';
+
+    display: flex;
+    flex-direction: row;
+
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+/* Vertical Align & Move Right a bit */
+.heading-text {
+    font-size: 150%;
+
+    left: 13%;
+    font-family: 'Nunito-Sans';
+
+    display: flex;
+    flex-direction: row;
+
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.heading-home {
+    font-size: 150%;
+
+    left: 95%;
+    font-family: 'Nunito-Sans';
+
+    display: flex;
+    flex-direction: row;
+
+    margin: 0;
+    position: absolute;
+    top: 15%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.settings-button {
+    left: 95%;
+    font-family: 'Nunito-Sans';
+
+    display: flex;
+    flex-direction: row;
+
+    margin: 0;
+    position: absolute;
+    top: 15%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
