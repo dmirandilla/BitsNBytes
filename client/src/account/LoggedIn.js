@@ -115,8 +115,8 @@ const LoggedIn = () => {
             if (userInfo[category] === true) {
               return (
                 <li>
-                  <Link to='home' smooth={true} duration={500}>
-                    {category} 
+                  <Link to={`/${category}`} smooth={true} duration={500}>
+                    {category}  
                   </Link>
                 </li>
               );
