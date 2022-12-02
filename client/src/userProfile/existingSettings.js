@@ -1,30 +1,12 @@
 import React from 'react';
 
-import { Fragment, useRef, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { Link } from 'react-router-dom';
-// import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-
-// import HomeIcon from './house.png';
-// import PersonIcon from './person.png';
-// import { ReactComponent as EllipseIcon } from './ellipse.png';
-
-
 import sportsIcon from './images/sports.jpg';
-import foodIcon from './images/food.jpg';
 import techIcon from './images/tech.jpg';
-import travelIcon from './images/travel.jpg';
-import musicIcon from './images/music.jpg';
 import healthfitnessIcon from './images/healthfitness.jpg';
 import financeIcon from './images/finance.jpg';
-import memeIcon from './images/meme.jpg';
 // import logoIcon from './images/logo.jpg';
 
-const CategorySelection = () => {
-	const [open, setOpen] = useState(false);
-
-	const cancelButtonRef = useRef(null);
-
+const ExistingSettings = ({userInfo}) => {
 	const inlineDivStyle = {
 		whiteSpace: 'nowrap',
 		display: 'inline',
@@ -34,14 +16,6 @@ const CategorySelection = () => {
 
 	return (
 		<>
-			<div className='heading py-16 px-16'>
-				{/* <img className="w-[300px] h-[300p]" src={logoIcon} /> */}
-				{/* <div className='heading-text'>
-					<h1 className="px-4">-iconhere-</h1>
-					<h1>Hello username</h1>    
-				</div> */}
-			</div>
-
 			{/* Move the entire div */}
 			<div className="px-4 py-5 sm:p-40">
 				<div className="grid grid-cols-2 gap-6">
@@ -66,16 +40,18 @@ const CategorySelection = () => {
 									name="sports"
 									type="checkbox"
 									className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
+									onClick={() => {return false}}
+									checked={userInfo.sports}
 								/>
 							</div>
 							<div className="ml-3 " style={inlineDivStyle}>
 								<label htmlFor="sports" className="text-2xl font-bold text-gray-700">
-									Sports <img src={sportsIcon} style={inlineDivStyle} />
+									Sports <img src={sportsIcon} style={inlineDivStyle} alt="sportsIcon"/>
 								</label>
 							</div>
 						</div>
 
-						{/* Food */}
+						{/* Business */}
 						<div className="flex items-start">
 							<div className="flex h-4 items-center">
 								<input
@@ -83,96 +59,89 @@ const CategorySelection = () => {
 									name="food"
 									type="checkbox"
 									className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
+									onClick={() => {return false}}
+									checked={userInfo.business}
 								/>
 							</div>
 							<div className="ml-3">
 								<label htmlFor="food" className="text-2xl font-bold text-gray-700">
-									Business <img src={financeIcon} style={inlineDivStyle} />
+									Business <img src={financeIcon} style={inlineDivStyle} alt="financeIcon"/>
 								</label>
 							</div>
 						</div>
 
-						{/* Tech */}
+						{/* Entertainment */}
 						<div className="flex items-start">
 							<div className="flex h-5 items-center">
 								<input
-									id="tech"
-									name="tech"
+									id="entertainment"
+									name="entertainment"
 									type="checkbox"
 									className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
+									onClick={() => {return false}}
+									checked={userInfo.entertainment}
 								/>
 							</div>
 							<div className="ml-3 ">
-								<label htmlFor="tech" className="text-2xl font-bold text-gray-700">
-									Entertainment <img src={techIcon} style={inlineDivStyle} />
+								<label htmlFor="entertainment" className="text-2xl font-bold text-gray-700">
+									Entertainment <img src={techIcon} style={inlineDivStyle} alt="techIcon" />
 								</label>
 							</div>
 						</div>
 
-						{/* Travel */}
+						{/* Health */}
 						<div className="flex items-start">
 							<div className="flex h-5 items-center">
 								<input
-									id="travel"
-									name="travel"
+									id="health"
+									name="health"
 									type="checkbox"
 									className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
-								/>
-							</div>
-							<div className="ml-3">
-								<label htmlFor="travel" className="text-2xl font-bold text-gray-700">
-									General <img src={travelIcon} style={inlineDivStyle} />
-								</label>
-							</div>
-						</div>
-
-						{/* Music */}
-						<div className="flex items-start">
-							<div className="flex h-5 items-center">
-								<input
-									id="music"
-									name="music"
-									type="checkbox"
-									className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
+									onClick={() => {return false}}
+									checked={userInfo.health}
 								/>
 							</div>
 							<div className="ml-3 ">
-								<label htmlFor="music" className="text-2xl font-bold text-gray-700">
-									Health <img src={healthfitnessIcon} style={inlineDivStyle} />
+								<label htmlFor="health" className="text-2xl font-bold text-gray-700">
+									Health <img src={healthfitnessIcon} style={inlineDivStyle} alt="healthfitnessIcon" />
 								</label>
 							</div>
 						</div>
 
-						{/* Health/Fitness */}
+						{/* Science */}
 						<div className="flex items-start">
 							<div className="flex h-5 items-center">
 								<input
-									id="healthfitness"
-									name="healthfitness"
+									id="science"
+									name="science"
 									type="checkbox"
 									className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
+									onClick={() => {return false}}
+									checked={userInfo.science}
 								/>
 							</div>
 							<div className="ml-3 ">
-								<label htmlFor="healthfitness" className="text-2xl font-bold text-gray-700">
-									Science <img src={healthfitnessIcon} style={inlineDivStyle} />
+								<label htmlFor="science" className="text-2xl font-bold text-gray-700">
+									Science <img src={healthfitnessIcon} style={inlineDivStyle} alt="healthfitnessIcon" />
 								</label>
 							</div>
 						</div>
 
-						{/* Finance */}
+						{/* Technology */}
 						<div className="flex items-start">
 							<div className="flex h-5 items-center">
 								<input
-									id="finance"
-									name="finance"
+									id="technology"
+									name="technology"
 									type="checkbox"
 									className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
+									onClick={() => {return false}}
+									checked={userInfo.technology}
 								/>
 							</div>
 							<div className="ml-3 ">
-								<label htmlFor="finance" className="text-2xl font-bold text-gray-700">
-									Technology <img src={techIcon} style={inlineDivStyle} />
+								<label htmlFor="technology" className="text-2xl font-bold text-gray-700">
+									Technology <img src={techIcon} style={inlineDivStyle} alt="techIcon" />
 								</label>
 							</div>
 						</div>
@@ -196,6 +165,8 @@ const CategorySelection = () => {
 								name="frequency"
 								type="radio"
 								className="h-8 w-8 border-gray-300 text-red-600 focus:ring-red-500"
+								onClick={() => {return false}}
+								checked={userInfo.frequency === "daily"}
 							/>
 							<label htmlFor="daily" className="text-2xl font-bold ml-3 block text-gray-700">
 								Daily
@@ -207,6 +178,8 @@ const CategorySelection = () => {
 								name="frequency"
 								type="radio"
 								className="h-8 w-8 border-gray-300 text-red-600 focus:ring-red-500"
+								onClick={() => {return false}}
+								checked={userInfo.frequency === "weekly"}
 							/>
 							<label htmlFor="weekly" className="text-2xl text-bold ml-3 block font-bold text-gray-700">
 								Weekly
@@ -220,4 +193,4 @@ const CategorySelection = () => {
 	);
 }
 
-export default CategorySelection;
+export default ExistingSettings;

@@ -5,13 +5,10 @@ import { FaRegUserCircle, FaHome } from 'react-icons/fa';
 import axios from 'axios';
 
 import Pool from '../UserPool';
-import CategorySelection from './existingSettings';
-
+import ExistingSettings from './ExistingSettings';
 import sportsIcon from './images/sports.jpg';
-import foodIcon from './images/food.jpg';
 import techIcon from './images/tech.jpg';
 import travelIcon from './images/travel.jpg';
-import musicIcon from './images/music.jpg';
 import healthfitnessIcon from './images/healthfitness.jpg';
 import financeIcon from './images/finance.jpg';
 import memeIcon from './images/meme.jpg';
@@ -19,6 +16,7 @@ import memeIcon from './images/meme.jpg';
 function UserProfile() {
 	const [open, setOpen] = useState(false);
 	const [userInfo, setUserInfo] = useState({});
+	const [initialUserInfo, setInitialUserInfo] = useState({});
 
 	const cancelButtonRef = useRef(null);
 
@@ -39,6 +37,7 @@ function UserProfile() {
 			await axios.get(apiURL)
 				.then(function({data}) {
 					setUserInfo(data);
+					setInitialUserInfo(data);
 				})
 				.catch(function(err) {
 					console.log("ERR: ", err);
@@ -49,14 +48,20 @@ function UserProfile() {
 	}, []);
 
 	const changeSelection = (category) => {
-		if (category == "daily" || category == "weekly") {
+		if (category === "daily" || category === "weekly") {
 			setUserInfo({...userInfo, 'frequency': category});
 		} else {
 			setUserInfo({...userInfo, [category]: !userInfo[category]});
 		}
 	}
 
-	const onSave = async () => {
+	const onSave = async (event) => {
+		event.preventDefault();
+
+		// Set the initial user info to the edited user info
+		// This way the ExistingSettings component can show the changes
+		setInitialUserInfo(userInfo);
+
 		const userInfoNoUsername = (({ username, ...o }) => o)(userInfo);
 		const data = { 
 			"username" : username,
@@ -113,7 +118,7 @@ function UserProfile() {
 			</div>
 
 
-			{/* <div className='heading' style={{ backgroundColor: '#E5E5E5' }}>
+			<div className='heading' style={{ backgroundColor: '#E5E5E5' }}>
 				<div className='space-x-50'>
 					<div className='heading-icon'>
 						<FaRegUserCircle size={100} />
@@ -129,7 +134,7 @@ function UserProfile() {
 						</a>
 					</div>
 				</div>
-			</div> */}
+			</div>
 
 			<div className="place-content-center h-56s">
 				<button onClick={() => setOpen(true)} type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
@@ -137,7 +142,7 @@ function UserProfile() {
 				</button>
 			</div>
 
-			<CategorySelection />
+			<ExistingSettings userInfo={initialUserInfo} />
 
 			{/* MODAL */}
 			<Transition.Root show={open} as={Fragment}>
@@ -207,7 +212,7 @@ function UserProfile() {
 																</div>
 																<div className="ml-3 text-sm" style={inlineDivStyle}>
 																	<label htmlFor="sports" className="font-medium text-gray-700">
-																		Sports <img src={sportsIcon} style={inlineDivStyle}/>
+																		Sports <img src={sportsIcon} style={inlineDivStyle} alt="sportsIcon"/>
 																	</label>
 																</div>
 															</div>
@@ -226,7 +231,7 @@ function UserProfile() {
 																</div>
 																<div className="ml-3 text-sm">
 																	<label htmlFor="business" className="font-medium text-gray-700">
-																		Business <img src={financeIcon} style={inlineDivStyle}/>
+																		Business <img src={financeIcon} style={inlineDivStyle} alt="financeIcon"/>
 																	</label>
 																</div>
 															</div>
@@ -245,7 +250,7 @@ function UserProfile() {
 																</div>
 																<div className="ml-3 text-sm">
 																	<label htmlFor="entertainment" className="font-medium text-gray-700">
-																		Entertainment <img src={travelIcon} style={inlineDivStyle}/>
+																		Entertainment <img src={travelIcon} style={inlineDivStyle} alt="travelIcon"/>
 																	</label>
 																</div>
 															</div>
@@ -264,7 +269,7 @@ function UserProfile() {
 																</div>
 																<div className="ml-3 text-sm">
 																	<label htmlFor="health" className="font-medium text-gray-700">
-																		Health <img src={healthfitnessIcon} style={inlineDivStyle}/>
+																		Health <img src={healthfitnessIcon} style={inlineDivStyle} alt="healthfitnessIcon"/>
 																	</label>
 																</div>
 															</div>
@@ -283,7 +288,7 @@ function UserProfile() {
 																</div>
 																<div className="ml-3 text-sm">
 																	<label htmlFor="science" className="font-medium text-gray-700">
-																		Science <img src={memeIcon} style={inlineDivStyle}/>
+																		Science <img src={memeIcon} style={inlineDivStyle} alt="memeIcon"/>
 																	</label>
 																</div>
 															</div>
@@ -302,7 +307,7 @@ function UserProfile() {
 																</div>
 																<div className="ml-3 text-sm">
 																	<label htmlFor="technology" className="font-medium text-gray-700">
-																		Technology <img src={techIcon} style={inlineDivStyle}/>
+																		Technology <img src={techIcon} style={inlineDivStyle} alt="techIcon"/>
 																	</label>
 																</div>
 															</div>
@@ -327,7 +332,7 @@ function UserProfile() {
 																	type="radio"
 																	className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
 																	onChange={() => changeSelection("daily")}
-																	checked={userInfo.frequency == "daily"}
+																	checked={userInfo.frequency === "daily"}
 																/>
 																<label htmlFor="daily" className="ml-3 block text-sm font-medium text-gray-700">
 																	Daily
@@ -340,7 +345,7 @@ function UserProfile() {
 																	type="radio"
 																	className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
 																	onChange={() => changeSelection("weekly")}
-																	checked={userInfo.frequency == "weekly"}
+																	checked={userInfo.frequency === "weekly"}
 																/>
 																<label htmlFor="weekly" className="ml-3 block text-sm font-medium text-gray-700">
 																	Weekly
@@ -358,8 +363,7 @@ function UserProfile() {
 												<button
 													type="submit"
 													className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-													onClick={() => onSave()}
-													// ref={cancelButtonRef}
+													onClick={(e) => onSave(e)}
 												>
 													Save
 												</button>

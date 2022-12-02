@@ -1,11 +1,9 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { AccountContext } from "../account/Account";
 
 import logo from "../account/images/logo.jpg";
 
 export default function LoggedIn() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const { logout } = useContext(AccountContext);
 
   return (
@@ -49,7 +47,7 @@ export default function LoggedIn() {
                 <img className="h-8" src={logo} alt="" />
               </a>
             </div>
-            <div className="flex lg:hidden">
+            {/* <div className="flex lg:hidden">
               <button
                 type="button"
                 className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -57,7 +55,7 @@ export default function LoggedIn() {
               >
                 <span className="sr-only">Open main menu</span>
               </button>
-            </div>
+            </div> */}
           </nav>
         </div>
       </div>
