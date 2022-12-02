@@ -51,6 +51,47 @@ function UserProfile() {
 		fetchData();
 	}, []);
 
+	const setExistingSelections = () => {
+		for (const category in userInfo) {
+			console.log('category: ', category);
+			if (userInfo[category] == true) {
+				document.getElementById(category).checked = true;
+			}
+		}
+	}
+
+	const changeSelection = (category) => {
+		if (category == "daily" || category == "weekly") {
+			setUserInfo({...userInfo, 'frequency': category});
+		} else {
+			setUserInfo({...userInfo, [category]: !userInfo[category]});
+		}
+	}
+
+	const onSave = async () => {
+		const userInfoNoUsername = (({ username, ...o }) => o)(userInfo);
+		const data = { 
+			"username" : username,
+			"settings" : userInfoNoUsername
+		}
+
+		const config = {
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Methods':'GET,POST,DELETE,PATCH,OPTIONS',
+		}
+
+		const apiURL = `https://h0kvzfoszc.execute-api.us-west-1.amazonaws.com/dev/settings`;
+
+		await axios.patch(apiURL, data, config).then(function(res) {
+			console.log("PATCH SUCCESS: ", res);
+		})
+		.catch(function(err) {
+			console.error("PATCH ERROR: ", err);
+		});
+
+		setOpen(false);
+	}
+
   return (
     <>
 			<div className='heading' style={{ backgroundColor: '#E5E5E5' }}>
@@ -139,6 +180,8 @@ function UserProfile() {
 																		name="sports"
 																		type="checkbox"
 																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		onChange={() => changeSelection("sports")}
+																		checked={userInfo.sports}
 																	/>
 																</div>
 																<div className="ml-3 text-sm" style={inlineDivStyle}>
@@ -148,124 +191,101 @@ function UserProfile() {
 																</div>
 															</div>
 
-															{/* Food */}
+															{/* Business */}
 															<div className="flex items-start">
 																<div className="flex h-5 items-center">
 																	<input
-																		id="food"
-																		name="food"
+																		id="business"
+																		name="business"
 																		type="checkbox"
 																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		onChange={() => changeSelection("business")}
+																		checked={userInfo.business}
 																	/>
 																</div>
 																<div className="ml-3 text-sm">
-																	<label htmlFor="food" className="font-medium text-gray-700">
-																		Food <img src={foodIcon} style={inlineDivStyle}/>
+																	<label htmlFor="business" className="font-medium text-gray-700">
+																		Business <img src={financeIcon} style={inlineDivStyle}/>
 																	</label>
 																</div>
 															</div>
 
-															{/* Tech */}
+															{/* Entertainment */}
 															<div className="flex items-start">
 																<div className="flex h-5 items-center">
 																	<input
-																		id="tech"
-																		name="tech"
+																		id="entertainment"
+																		name="entertainment"
 																		type="checkbox"
 																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		onChange={() => changeSelection("entertainment")}
+																		checked={userInfo.entertainment}
 																	/>
 																</div>
 																<div className="ml-3 text-sm">
-																	<label htmlFor="tech" className="font-medium text-gray-700">
-																		Tech <img src={techIcon} style={inlineDivStyle}/>
+																	<label htmlFor="entertainment" className="font-medium text-gray-700">
+																		Entertainment <img src={travelIcon} style={inlineDivStyle}/>
 																	</label>
 																</div>
 															</div>
 
-															{/* Travel */}
+															{/* Health */}
 															<div className="flex items-start">
 																<div className="flex h-5 items-center">
 																	<input
-																		id="travel"
-																		name="travel"
+																		id="health"
+																		name="health"
 																		type="checkbox"
 																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		onChange={() => changeSelection("health")}
+																		checked={userInfo.health}
 																	/>
 																</div>
 																<div className="ml-3 text-sm">
-																	<label htmlFor="travel" className="font-medium text-gray-700">
-																		Travel <img src={travelIcon} style={inlineDivStyle}/>
+																	<label htmlFor="health" className="font-medium text-gray-700">
+																		Health <img src={healthfitnessIcon} style={inlineDivStyle}/>
 																	</label>
 																</div>
 															</div>
 
-															{/* Music */}
+															{/* Science */}
 															<div className="flex items-start">
 																<div className="flex h-5 items-center">
 																	<input
-																		id="music"
-																		name="music"
+																		id="science"
+																		name="science"
 																		type="checkbox"
 																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		onChange={() => changeSelection("science")}
+																		checked={userInfo.science}
 																	/>
 																</div>
 																<div className="ml-3 text-sm">
-																	<label htmlFor="music" className="font-medium text-gray-700">
-																		Music <img src={musicIcon} style={inlineDivStyle}/>
+																	<label htmlFor="science" className="font-medium text-gray-700">
+																		Science <img src={memeIcon} style={inlineDivStyle}/>
 																	</label>
 																</div>
 															</div>
 
-															{/* Health/Fitness */}
+															{/* Technology */}
 															<div className="flex items-start">
 																<div className="flex h-5 items-center">
 																	<input
-																		id="healthfitness"
-																		name="healthfitness"
+																		id="technology"
+																		name="technology"
 																		type="checkbox"
 																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																		onChange={() => changeSelection("technology")}
+																		checked={userInfo.technology}
 																	/>
 																</div>
 																<div className="ml-3 text-sm">
-																	<label htmlFor="healthfitness" className="font-medium text-gray-700">
-																		Health/Fitness <img src={healthfitnessIcon} style={inlineDivStyle}/>
+																	<label htmlFor="technology" className="font-medium text-gray-700">
+																		Technology <img src={techIcon} style={inlineDivStyle}/>
 																	</label>
 																</div>
 															</div>
 
-															{/* Finance */}
-															<div className="flex items-start">
-																<div className="flex h-5 items-center">
-																	<input
-																		id="finance"
-																		name="finance"
-																		type="checkbox"
-																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-																	/>
-																</div>
-																<div className="ml-3 text-sm">
-																	<label htmlFor="finance" className="font-medium text-gray-700">
-																		Finance <img src={financeIcon} style={inlineDivStyle}/>
-																	</label>
-																</div>
-															</div>
-
-															{/* Memes */}
-															<div className="flex items-start">
-																<div className="flex h-5 items-center">
-																	<input
-																		id="memes"
-																		name="memes"
-																		type="checkbox"
-																		className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-																	/>
-																</div>
-																<div className="ml-3 text-sm">
-																	<label htmlFor="memes" className="font-medium text-gray-700">
-																		Memes <img src={memeIcon} style={inlineDivStyle}/>
-																	</label>
-																</div>
-															</div>
 														</div>
 														{/* End Left Column */}
 
@@ -285,6 +305,8 @@ function UserProfile() {
 																	name="frequency"
 																	type="radio"
 																	className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																	onChange={() => changeSelection("daily")}
+																	checked={userInfo.frequency == "daily"}
 																/>
 																<label htmlFor="daily" className="ml-3 block text-sm font-medium text-gray-700">
 																	Daily
@@ -296,6 +318,8 @@ function UserProfile() {
 																	name="frequency"
 																	type="radio"
 																	className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+																	onChange={() => changeSelection("weekly")}
+																	checked={userInfo.frequency == "weekly"}
 																/>
 																<label htmlFor="weekly" className="ml-3 block text-sm font-medium text-gray-700">
 																	Weekly
@@ -313,7 +337,7 @@ function UserProfile() {
 												<button
 													type="submit"
 													className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-													onClick={() => setOpen(false)}
+													onClick={() => onSave()}
 													ref={cancelButtonRef}
 												>
 													Save

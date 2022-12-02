@@ -79,7 +79,7 @@ async function editSettings(requestBody) {
     // requestBody is a JSON, get the individual items
     const rBody = JSON.parse(JSON.stringify(requestBody));
     const username = rBody.username;
-    const { sports, finance, healthfitness, memes, frequency, lastUpdated }  = rBody.settings;
+    const { sports, business, entertainment, health, science, technology, frequency, lastUpdated }  = rBody.settings;
 
     let params = {
         TableName: dynamodbTableName,
@@ -87,17 +87,21 @@ async function editSettings(requestBody) {
             'username': username,
         },
         UpdateExpression: `set sports = :sportsVal, 
-            finance = :financeVal, 
-            healthfitness = :healthfitnessVal,
-            memes = :memesVal,
-            frequency = :frequencyVal,
+            business = :businessVal, 
+            entertainment = :entertainmentVal, 
+            health = :healthVal, 
+            science = :scienceVal, 
+            technology = :technologyVal, 
+            frequency = :frequencyVal, 
             lastUpdated = :lastUpdatedVal
         `,
         ExpressionAttributeValues: {
             ":sportsVal": sports,
-            ":financeVal": finance,
-            ":healthfitnessVal" : healthfitness,
-            ":memesVal" : memes,
+            ":businessVal": business,
+            ":entertainmentVal": entertainment,
+            ":healthVal": health,
+            ":scienceVal": science,
+            ":technologyVal" : technology,
             ":frequencyVal" : frequency,
             ":lastUpdatedVal" : lastUpdated
         },
