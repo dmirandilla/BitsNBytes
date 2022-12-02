@@ -5,8 +5,9 @@ import UserProfile from './UserProfile/UserProfile';
 import { Account } from "./account/Account";
 import CreateAccount from "./account/createAccount";
 import Login from "./account/Login";
-
+import NavBar from "./account/navbar";
 import CategorySelection from "./account/categorySelection"
+import LoggedIn from "./account/LoggedIn";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route exact path="/createAccount" component={CreateAccount} />  
           <Route exact path="/login" component={Login} />  
           <Route exact path="/categorySelection" component={CategorySelection} />
+          <Route exact path="/navbar" component={NavBar} />
+          <Route exact path="/loggedIn" component={LoggedIn} />
         </Account>
         <Redirect to="/" />
         

@@ -1,9 +1,10 @@
 import { useState, useContext } from 'react';
 import { AccountContext } from "../account/Account";
-
+import { Link } from 'react-router-dom';
 import logo from "../account/images/logo.jpg";
+import User from "./images/user.jpg"
 
-export default function LoggedIn() {
+const LoggedIn = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const { logout } = useContext(AccountContext);
@@ -38,66 +39,9 @@ export default function LoggedIn() {
           </defs>
         </svg>
       </div>
-      
-      {/* LOGO TOP LEFT */}
-      <div className="px-6 pt-6 lg:px-8">
-        <div>
-          <nav className="flex h-9 items-center justify-between" aria-label="Global">
-            <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">BitsNBytes</span>
-                <img className="h-8" src={logo} alt="" />
-              </a>
-            </div>
-            <div className="flex lg:hidden">
-              <button
-                type="button"
-                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-                onClick={() => setMobileMenuOpen(true)}
-              >
-                <span className="sr-only">Open main menu</span>
-              </button>
-            </div>
-          </nav>
-        </div>
-      </div>
 
-      <main>
-        <div className="relative px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
-            <div>
-              <div>
-                <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">
-                    You are already logged in!
-                </h1>
-                <p className="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
-                    Return to the BitsNBytes home page to sign out.
-                </p>
-                <div className="mt-8 flex gap-x-4 sm:justify-center">
-                  <a
-                    className="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700"
-                    href="/"
-                  >
-                    Go Home
-                    <span className="text-indigo-200" aria-hidden="true">
-                      &rarr;
-                    </span>
-                  </a>
-                  <a
-                    className="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
-                    href="/login"
-                    onClick={() => logout()}
-                  >
-                    Logout
-                    <span className="text-gray-400" aria-hidden="true">
-                      &rarr;
-                    </span>
-                  </a>
-                </div>
-              </div>
-              
-              {/* Blurred Red Right Side */}
-              <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+       {/* Blurred Red Right Side */}
+       <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
                 <svg
                   className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
                   viewBox="0 0 1155 678"
@@ -124,11 +68,79 @@ export default function LoggedIn() {
                   </defs>
                 </svg>
               </div>
+      
+      {/* LOGO TOP LEFT */}
+      <div className="px-6 pt-6 lg:px-8">
+        <div>
+          <nav className="flex h-9 items-center justify-between" aria-label="Global">
+            <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
+              <a href="#" className="-m-1.5 p-1.5">
+                <span className="sr-only">BitsNBytes</span>
+                <img className="h-8" src={logo} alt="" />
+              </a>
+            </div>
+            <div className="flex lg:hidden">
+              <button
+                type="button"
+                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                onClick={() => setMobileMenuOpen(true)}
+              >
+                <span className="sr-only">Open main menu</span>
+              </button>
+            </div>
+          </nav>
+        </div>
+      </div>
 
+      {/* Main */}
+      <main>
+        <div className="relative px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
+            <div>
+              <div>
+
+                <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">
+                    You are already logged in!
+                </h1>
+
+                <div className="mt-8 flex gap-x-4 sm:justify-center">
+                  <a
+                    className="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+                    href="/login"
+                    onClick={() => logout()}
+                  >
+                    Logout
+                    <span className="text-gray-400" aria-hidden="true">
+                      &rarr;
+                    </span>
+                  </a>
+                </div>
+              </div>
+  
             </div>
           </div>
         </div>
       </main>
+
+      <div class="flex items-center p-6 text-gray-600 capitalize dark:text-gray-300">
+        <Link to="#" class="text-3xl border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-red-500 mx-1.5 sm:mx-6">Sports</Link>
+        <Link to="#" class="text-3xl border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-red-500 mx-1.5 sm:mx-6">Business</Link>
+        <Link to="#" class="text-3xl border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-red-500 mx-1.5 sm:mx-6">Entertainment</Link>
+        <Link to="#" class="text-3xl border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-red-500 mx-1.5 sm:mx-6">General</Link>
+        <Link to="#" class="text-3xl border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-red-500 mx-1.5 sm:mx-6">Health </Link>
+        <Link to="#" class="text-3xl border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-red-500 mx-1.5 sm:mx-6">Science </Link>
+        <Link to="#" class="text-3xl border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-red-500 mx-1.5 sm:mx-6">Technology </Link>
+
+        <button>
+            <img className="w-[50x] h-[50px]" src={User}/>
+        </button> 
+
+    </div>
+
+
     </div>
   )
 }
+
+export default LoggedIn;
+

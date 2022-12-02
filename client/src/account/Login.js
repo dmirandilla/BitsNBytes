@@ -70,7 +70,7 @@ const Login = () => {
 					</svg>
 				</div>
 
-				<div className="flex min-h-full items-center justify-center py-80 px-4 sm:px-6 lg:px-8">
+				<div className="flex justify-center py-80">
 					<div className="w-full max-w-md space-y-8">
 						<div>
 								<img
@@ -187,7 +187,7 @@ const Login = () => {
 
 
     return(
-		<div className="container">
+		<div className=" max-w-full">
 			{checkSession() ? <LoggedIn /> : loginComponent()}
 		</div>
     );

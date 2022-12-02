@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import { Link } from 'react-router-dom';
 // import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 // import HomeIcon from './house.png';
@@ -66,7 +67,7 @@ const CategorySelection = () => {
 										id="sports"
 										name="sports"
 										type="checkbox"
-										className="h-8 w-8 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+										className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
 											/>
 								</div>
 										<div className="ml-3 " style={inlineDivStyle}>
@@ -83,7 +84,7 @@ const CategorySelection = () => {
 												id="food"
 												name="food"
 												type="checkbox"
-												className="h-8 w-8 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+												className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
 											/>
 										</div>
 										<div className="ml-3">
@@ -100,7 +101,7 @@ const CategorySelection = () => {
 												id="tech"
 												name="tech"
 												type="checkbox"
-												className="h-8 w-8 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+												className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
 											/>
 										</div>
 										<div className="ml-3 ">
@@ -117,7 +118,7 @@ const CategorySelection = () => {
 												id="travel"
 												name="travel"
 												type="checkbox"
-												className="h-8 w-8 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+												className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
 											/>
 										</div>
 										<div className="ml-3">
@@ -134,7 +135,7 @@ const CategorySelection = () => {
 												id="music"
 												name="music"
 												type="checkbox"
-												className="h-8 w-8 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+												className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
 											/>
 										</div>
 										<div className="ml-3 ">
@@ -151,7 +152,7 @@ const CategorySelection = () => {
 												id="healthfitness"
 												name="healthfitness"
 												type="checkbox"
-												className="h-8 w-8 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+												className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
 											/>
 										</div>
 										<div className="ml-3 ">
@@ -168,7 +169,7 @@ const CategorySelection = () => {
 												id="finance"
 												name="finance"
 												type="checkbox"
-												className="h-8 w-8 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+												className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
 											/>
 										</div>
 										<div className="ml-3 ">
@@ -185,7 +186,7 @@ const CategorySelection = () => {
 												id="memes"
 												name="memes"
 												type="checkbox"
-												className="h-8 w-8 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+												className="h-8 w-8 rounded border-gray-300 text-red-600 focus:ring-red-500"
 											/>
 										</div>
 										<div className="ml-3 ">
@@ -213,7 +214,7 @@ const CategorySelection = () => {
 											id="daily"
 											name="frequency"
 											type="radio"
-											className="h-8 w-8 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+											className="h-8 w-8 border-gray-300 text-red-600 focus:ring-red-500"
 										/>
 										<label htmlFor="daily" className="text-2xl font-bold ml-3 block text-gray-700">
 											Daily
@@ -224,7 +225,7 @@ const CategorySelection = () => {
 											id="weekly"
 											name="frequency"
 											type="radio"
-											className="h-8 w-8 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+											className="h-8 w-8 border-gray-300 text-red-600 focus:ring-red-500"
 										/>
 										<label htmlFor="weekly" className="text-2xl text-bold ml-3 block font-bold text-gray-700">
 											Weekly
@@ -233,6 +234,8 @@ const CategorySelection = () => {
 								</div>
 
 							<div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+								
+						<Link to='/loggedIn'> 
 						<button
 							type="submit"
 							className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-red-600 px-4 py-2 text-base font-bold text-white shadow-sm hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:"
@@ -241,6 +244,7 @@ const CategorySelection = () => {
 						>
 							Confirm
 						</button>
+						</Link>
 													
 					</div> 
 

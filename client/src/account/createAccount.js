@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { CognitoUser } from "amazon-cognito-identity-js";
 import UserPool from "../UserPool";
 import { Link } from 'react-router-dom';
+import Logo from './images/logoGrey.png';
 
 const CreateAccount = () => {
     const [email, setEmail] = useState("");
@@ -11,6 +12,10 @@ const CreateAccount = () => {
     const [username, setUsername] = useState("");
     const [changeCode, setChangeCode] = useState(false);
     const [code, setCode] = useState("");
+
+    //if new user, direct them to the category selection page 
+    const [newUser, setNewUser] = useState(false);
+
 
     const passReq = "Password must be at least length of 8 and include a number, uppercase & lowercase letter";
 
@@ -56,65 +61,75 @@ const CreateAccount = () => {
     }
 
     const createForm = () => (
-        <>
-        <h1>Let's Get You Suited Up</h1>
         <form noValidate autoComplete="off" onSubmit={onSubmit}>
-            <br/><br/>
-            <label>Username</label>
-            <input
-                required
-                label="Username"
-                className="inputBox"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-            />
-            <br/><br/>
-            <label>Email</label>
-            <input
-                required
-                label="Email"
-                className="inputBox"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-            />
-            <br/><br/>
-            <label>Password</label>
-            <input
-                required
-                label="Password"
-                type="password"
-                autoComplete="current-password"
-                className="inputBox"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-            />
-            <br/><br/>
-            <label>Confirm Password</label>
-            <input
-                required
-                label="Confirm Password"
-                type="password"
-                autoComplete="current-password"
-                className="inputBox"
-                value={confirmPassword}
-                onChange={(event) => setConfirmPassword(event.target.value)}
-            />
-            <br/><br/>
+            <div className="flex min-h-full items-center justify-center py-80 px-4 sm:px-6 lg:px-8">
+                <div className="bg-[#BDC6D1] px-6 py-8 rounded shadow-md text-black container max-w-lg">
+                <img className="mx-auto h-20 py-1 w-auto items-center" src={Logo}/>
+                    <h1 className="font-bold mb-8 text-3xl text-center">Sign up</h1>
+                    <input 
+                        type="text"
+                        className="block border border-grey-light w-full p-3 rounded mb-4"
+                        name="username"
+                        placeholder="Username" 
+                        /*Cam's Code here */
+                        required
+                        label="Username"
+                        value={username}
+                        onChange={(event) => setUsername(event.target.value)}
+                        />
 
-            <br/>
-            <div className="centerButton">
-                <button type="submit">Create Account</button>
-            </div>
+                    <input 
+                        type="text"
+                        className="block border border-grey-light w-full p-3 rounded mb-4"
+                        name="email"
+                        placeholder="Email" 
+                        /*Cam's Code here */
+                        required
+                        label="Email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                        />
 
-            <div className="flex justify-center"> 
-                <Link to='/login' className="flex group relative justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                    Back
-                </Link>
+                    <input 
+                        type="password"
+                        className="block border border-grey-light w-full p-3 rounded mb-4"
+                        name="password"
+                        placeholder="Password" 
+                        /*Cam's Code here */
+                        required
+                        label="Password"
+                        autoComplete="current-password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+
+
+                        />
+                    <input 
+                        type="password"
+                        className="block border border-grey-light w-full p-3 rounded mb-4"
+                        name="confirm_password"
+                        placeholder="Confirm Password" 
+                        /*Cam's Code here */
+                        required
+                        label="Confirm Password"
+                        autoComplete="current-password"
+                        value={confirmPassword}
+                        onChange={(event) => setConfirmPassword(event.target.value)}
+                        
+                        />
+
+                    <button
+                        type="submit"
+                        className="w-full text-center py-3 rounded bg-[#D90429] text-white hover:bg-[#5b1e28] focus:outline-none my-1"
+                    >Create Account</button>
+
+                    <button
+                        type="back"
+                        className="w-full text-center py-3 rounded bg-[#2B2D42] text-white hover:bg-[#5b1e28] focus:outline-none my-1"
+                    >Back</button>
+                </div>    
             </div>
         </form>
-        <br/><br/>
-        <p><i>{passReq}</i></p>
-        </>
     );
 
 
@@ -187,9 +202,9 @@ const CreateAccount = () => {
 
 
     return(
-        <div className="container">
+        <div className="container: max-w-full">
             {changeCode ? enterCode() : createForm()}
-            <h1>createAccount</h1>
+            {/* <h1>createAccount</h1> */}
         </div>
     );
 }
