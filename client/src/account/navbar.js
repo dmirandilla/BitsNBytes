@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Logo from './images/logo.jpg'
 import { Link } from 'react-router-dom';
 import User from './images/user.jpg'
@@ -23,6 +23,8 @@ const NavBar = () => {
 
   const [userInfo, setUserInfo] = useState({});
   const [nav, setNav] = useState(false);
+
+  const { logout } = useContext(AccountContext);
 
   useEffect(() => {
     async function getUserInfo() {
@@ -66,7 +68,7 @@ const NavBar = () => {
 
           <li>
             <Link to="/userProfile">
-              <img className="h-[50px] w-[50px]" src={User} />
+              <img className="h-[50px] w-[500px]" src={User} />
             </Link>
           </li>
         </ul>
@@ -74,6 +76,19 @@ const NavBar = () => {
         {/* Hamburger */}
         <div onClick={handleClick} className='md:hidden z-10'>
           {!nav ? <FaBars /> : <FaTimes />}
+        </div>
+
+        <div>
+          <a
+            className="bg-gray-600 inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+            href="/login"
+            onClick={() => logout()}
+          >
+            Logout
+            <span className="text-gray-400" aria-hidden="true">
+              &rarr;
+            </span>
+          </a>
         </div>
       </div>
     </>

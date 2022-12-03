@@ -1,5 +1,6 @@
 import './UserProfile.css'
 import React, { Fragment, useRef, useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react'
 import { FaRegUserCircle, FaHome } from 'react-icons/fa';
 import axios from 'axios';
@@ -96,7 +97,7 @@ function UserProfile() {
   return (
     <>
 			{/* <!-- main - parent div --> */}
-			<div class="main bg-gray-200 grid place-items-center h-screen">
+			<div class="main grid place-items-center h-screen">
 			{/* <!--card--> */}
 			<div class="card bg-white flex flex-col items-center justify-center p-4 shadow-lg rounded-2xl w-96 h-96">
 				{/* <!--profile-image--> */}
@@ -109,7 +110,7 @@ function UserProfile() {
 				</div>
 				{/* <!--username--> */}
 				<div class="username text-gray-500 pb-8">
-					<p>USERNAME HERE</p>
+					<p>{username}</p>
 				</div>
 
 				{/* <!-- follow button --> */}
@@ -118,6 +119,12 @@ function UserProfile() {
 							shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
 								Edit Settings
 							</button>
+							<Link to='/loggedIn' className='px-5'>
+								<button className="inline-flex justify-center rounded-md border border-transparent bg-gray-600 py-2 px-4 text-sm font-medium text-white 
+								shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+									Back Home
+								</button>
+							</Link>
 					</div>
 			</div>
 		</div>
@@ -125,8 +132,6 @@ function UserProfile() {
 
 			{/* <div className='vertical-divider'/> */}
 			
-
-			<ExistingSettings userInfo={initialUserInfo} />
 
 			<ExistingSettings userInfo={initialUserInfo} />
 

@@ -256,7 +256,7 @@ const CategorySelection = (username) => {
 
 								{/* Start Confirm Button Row */}
 								<div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-									<Link to='/loggedIn'> 
+									<Link to='/login'> 
 										<button
 											type="submit"
 											className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-red-600 px-4 py-2 text-base font-bold text-white shadow-sm hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:"
