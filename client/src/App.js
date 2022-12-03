@@ -35,7 +35,6 @@ function App() {
           <Route exact path="/health" component={Health} />
           <Route exact path="/science" component={Science} />
           <Route exact path="/technology" component={Technology} />
-          <Route exact path="/loggedIn" component={LoggedIn} />
 
 
         </Account>

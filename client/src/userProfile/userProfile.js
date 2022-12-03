@@ -95,32 +95,32 @@ function UserProfile() {
 
   return (
     <>
-	{/* <!-- main - parent div --> */}
-	<div class="main bg-gray-200 grid place-items-center h-screen">
-	{/* <!--card--> */}
-	<div class="card bg-white flex flex-col items-center justify-center p-4 shadow-lg rounded-2xl w-96 h-96">
-		{/* <!--profile-image--> */}
-		<div class="profile mx-auto rounded-full py-2 w-16 "> 
-			<img src={User} alt="profile"/>
-		</div>
-		{/* <!--name--> */}
-		<div class="name text-gray-800 text-2xl font-medium mt-4 ">
-			<p>Hello</p>
-		</div>
-		{/* <!--username--> */}
-		<div class="username text-gray-500 pb-8">
-			<p>USERNAME HERE</p>
-		</div>
+			{/* <!-- main - parent div --> */}
+			<div class="main bg-gray-200 grid place-items-center h-screen">
+			{/* <!--card--> */}
+			<div class="card bg-white flex flex-col items-center justify-center p-4 shadow-lg rounded-2xl w-96 h-96">
+				{/* <!--profile-image--> */}
+				<div class="profile mx-auto rounded-full py-2 w-16 "> 
+					<img src={User} alt="profile"/>
+				</div>
+				{/* <!--name--> */}
+				<div class="name text-gray-800 text-2xl font-medium mt-4 ">
+					<p>Hello</p>
+				</div>
+				{/* <!--username--> */}
+				<div class="username text-gray-500 pb-8">
+					<p>USERNAME HERE</p>
+				</div>
 
-		{/* <!-- follow button --> */}
-		<div className="">
-					<button onClick={() => setOpen(true)} type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white 
-					shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-						Edit Settings
-					</button>
+				{/* <!-- follow button --> */}
+				<div className="">
+							<button onClick={() => setOpen(true)} type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white 
+							shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+								Edit Settings
+							</button>
+					</div>
 			</div>
-	</div>
-</div>
+		</div>
 
 
 			{/* <div className='vertical-divider'/> */}
@@ -402,8 +402,7 @@ function UserProfile() {
 					</defs>
 				</svg>
 			</div>
-
-    </div>
+	</>
   );
 }
 

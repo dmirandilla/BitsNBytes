@@ -7,6 +7,8 @@ import axios from 'axios';
 import Article from './Article';
 import logoIcon from './images/logo.jpg';
 
+import NavBar from './navbar';
+
 
 import {
   FaBars,
@@ -30,6 +32,12 @@ const LoggedIn = () => {
 
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
+
+  const [count, setCount] = useState(0)
+
+  function setter() {
+      setCount(count + 1)
+  }
 
 
   useEffect(() => {
@@ -103,33 +111,47 @@ const LoggedIn = () => {
 
       </div> */}
 
+      <NavBar />
 
-      <div className='flex w-full h-[110px] px-48 justify-between items-center px-4 bg-blue-900 text-gray-300'>
+      {/* <div className='flex w-full h-[110px] px-48 justify-between items-center px-4 bg-blue-900 text-gray-300'>
         <div>
           <img src={logoIcon} alt='Logo Image' style={{ width: '200px' }} />
-        </div>
+        </div> */}
 
         {/* menu */}
-        <ul className='hidden md:flex'> 
+        {/* <ul className='flex space-x-16 hidden md:flex'> 
           {Object.keys(userInfo).map((category, index) => {
             if (userInfo[category] === true) {
               return (
                 <li>
-                  <Link to={`/${category}`} smooth={true} duration={500}>
-                    {category}  
+                  <Link className="text-2xl border-b-2 border-transparent hover:text-red-800 dark:hover:text-red-200 hover:border-red-500" to={`/${category}`}  duration={500}>
+                    {category}
                   </Link>
                 </li>
               );
             }
           })}
-        </ul>
+
+          <li>
+            <Link to="/userProfile">
+              <img className="h-[50px] w-[50px]" src={User}/>
+            </Link>
+          </li>
+        </ul> */}
 
         {/* Hamburger */}
-        <div onClick={handleClick} className='md:hidden z-10'>
+        {/* <div onClick={handleClick} className='md:hidden z-10'>
           {!nav ? <FaBars /> : <FaTimes />}
         </div>
-      </div>
+      </div> */}
       {/* Social icons */}
+
+
+      <div className="flex justify-center px-20 py-5">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setter()}>
+              Refresh this genre!
+          </button>
+      </div> 
 
 
 
