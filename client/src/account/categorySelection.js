@@ -67,19 +67,13 @@ const CategorySelection = (username) => {
 			console.error("PATCH ERROR: ", err);
 		})
 		.finally(() => {
+			history.push("/login")
 			history.go("/login");
 		});
 	}
 
 	return (
 		<>
-			<div className='heading py-16 px-16'>
-				{/* <img className="w-[300px] h-[300p]" src={logoIcon} /> */}
-				{/* <div className='heading-text'>
-					<h1 className="px-4">-iconhere-</h1>
-					<h1>Hello username</h1>    
-				</div> */}
-			</div>
 
 			<div className="pb-20 px-40 mt-5 md:col-span-2 md:mt-0">
 				<form>

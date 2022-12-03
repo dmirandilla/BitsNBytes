@@ -68,15 +68,12 @@ const NavBar = () => {
 
           <li>
             <Link to="/userProfile">
-              <img className="h-[50px] w-[500px]" src={User} />
+              <img className="h-[75px] w-[75px]" src={User} />
             </Link>
           </li>
         </ul>
 
-        {/* Hamburger */}
-        <div onClick={handleClick} className='md:hidden z-10'>
-          {!nav ? <FaBars /> : <FaTimes />}
-        </div>
+      
 
         <div>
           <a
