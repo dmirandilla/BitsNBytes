@@ -1,6 +1,7 @@
 # BitsNBytes
 
-[Link to BitsNBytes Github Repository](https://github.com/dmirandilla/BitsNBytes)
+[Link to BitsNBytes Github Repository](https://github.com/dmirandilla/BitsNBytes)<br>
+[Link to Demo Video](https://youtu.be/P4YvX50njV4)
 
 ## Setup Needed:
 1. Make sure you have node.js, npm, and git installed on the computer you'll be cloning into. 
